@@ -1,5 +1,3 @@
-#extends CharacterBody3D
-
 class_name UnstablePlayer
 
 extends CharacterBody3D
@@ -58,7 +56,7 @@ func checkState():
 			_state = walk
 		return 
 	
-	if Input.is_action_pressed("sprint") and is_on_floor():
+	if Input.is_action_pressed("sprint"):
 		_state = sprint
 	else:
 		_state = walk
