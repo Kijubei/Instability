@@ -1,4 +1,8 @@
-extends CharacterController3D
+#extends CharacterBody3D
+
+class_name UnstablePlayer
+
+extends CharacterBody3D
 
 signal mood_shift(directionMultiplier: int)
 
@@ -11,11 +15,19 @@ enum PlayerState {
 const hLookSensibility = 0.2
 const vLookSensibility = 0.2
 
-# exports 123
+@export_category("Movement")
+@export var gravity_multiplier = 3
+@export var speed = 10
+@export var acceleration = 8
+@export var deceleration = 10
+@export var air_control = 0.3
+@export var jump_height = 10
+@export var sprint_speed_multiplier = 1.6
 
 var _state = walk
 
 @onready var cameraBase = $CameraBase
+@onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier)
 
 func _input(event):
 	if event is InputEventMouseMotion:
