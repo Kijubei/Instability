@@ -15,7 +15,7 @@ const vLookSensibility = 0.2
 
 @export_category("Movement")
 @export var gravity_multiplier = 3
-@export var speed = 10
+@export var speed = 10.0
 @export var acceleration = 3
 @export var deceleration = 2
 @export var air_control = 0.3

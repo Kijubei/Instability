@@ -25,7 +25,7 @@ func randomDirection() -> int:
 	return directions[randi() % directions.size()]
 
 
-func _on_mood_shift_started(directionMultiplier):
+func _on_mood_shift_started():
 	tween.kill()
 
 

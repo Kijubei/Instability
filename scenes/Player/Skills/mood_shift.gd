@@ -1,6 +1,6 @@
 extends Node3D
 
-signal started(directionMultiplier: int)
+signal started
 signal complete(directionMultiplier: int)
 
 @export_category("Customization")
@@ -48,7 +48,7 @@ func variance() -> int:
 
 func _on_unstable_player_mood_shift(directionMultiplier):
 	if is_shift_possible(directionMultiplier):
-		emit_signal("started", directionMultiplier)
+		emit_signal("started")
 		shift(directionMultiplier)
 
 func moodShiftDone(directionMultiplier: int):
