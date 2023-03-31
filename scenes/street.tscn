@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://bv0sopkdlvrdk"]
+
+[ext_resource type="Texture2D" uid="uid://fqwwq3wdve6c" path="res://assets/PavingStones099_2K-PNG/PavingStones099_2K_Color.png" id="1_wxmx2"]
+[ext_resource type="Texture2D" uid="uid://cyl3diiydrn6o" path="res://assets/PavingStones099_2K-PNG/PavingStones099_2K_Displacement.png" id="2_w6v6s"]
+[ext_resource type="Texture2D" uid="uid://b0ljfpg7vy2gd" path="res://assets/PavingStones099_2K-PNG/PavingStones099_2K_NormalDX.png" id="3_5pnf3"]
+[ext_resource type="Texture2D" uid="uid://dotwsvw0swtwy" path="res://assets/PavingStones099_2K-PNG/PavingStones099_2K_Roughness.png" id="4_ordrt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vohtl"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k04la"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kiwkn"]
+albedo_texture = ExtResource("1_wxmx2")
+roughness_texture = ExtResource("4_ordrt")
+normal_enabled = true
+normal_texture = ExtResource("3_5pnf3")
+heightmap_texture = ExtResource("2_w6v6s")
+uv1_scale = Vector3(7, 7, 7)
+grow_amount = -0.183
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ifwte"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_kiwkn")
+size = Vector2(40, 40)
+
+[node name="Street" type="StaticBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_vohtl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_k04la")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ifwte")

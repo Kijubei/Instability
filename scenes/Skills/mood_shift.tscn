@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfewpjkhc6pru"]
+
+[ext_resource type="Script" path="res://scenes/Skills/mood_shift.gd" id="1_crreo"]
+
+[node name="MoodShift" type="Node3D"]
+script = ExtResource("1_crreo")

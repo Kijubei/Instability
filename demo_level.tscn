@@ -1,0 +1,139 @@
+[gd_scene load_steps=9 format=3 uid="uid://cul3gjmek75nm"]
+
+[ext_resource type="PackedScene" uid="uid://d2asp3tc5rt3d" path="res://scenes/Player.tscn" id="1_4u4gr"]
+[ext_resource type="Script" path="res://demo_level.gd" id="1_kuyee"]
+[ext_resource type="PackedScene" uid="uid://bo6hq0jxub0pp" path="res://scenes/haus.tscn" id="3_11bh6"]
+[ext_resource type="PackedScene" uid="uid://bt7ftwprr0muu" path="res://scenes/Skills/Instability.tscn" id="3_o36rr"]
+[ext_resource type="PackedScene" uid="uid://bfewpjkhc6pru" path="res://scenes/Skills/mood_shift.tscn" id="4_oop37"]
+[ext_resource type="PackedScene" uid="uid://bv0sopkdlvrdk" path="res://scenes/street.tscn" id="5_ihdcp"]
+[ext_resource type="PackedScene" uid="uid://boxf62wmawto" path="res://scenes/walker_group.tscn" id="5_tcqy0"]
+[ext_resource type="Script" path="res://Leute.gd" id="6_rjddn"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_kuyee")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.335797, 0.941934, 0, -0.941934, 0.335797, 0, 6.71627, 0.165482)
+
+[node name="Player" parent="." instance=ExtResource("1_4u4gr")]
+acceleration = 3
+deceleration = 2
+
+[node name="Instability" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_o36rr")]
+world = NodePath("../Objekte")
+
+[node name="MoodShift" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_oop37")]
+world = NodePath("../Objekte")
+
+[node name="Objekte" type="Node3D" parent="."]
+
+[node name="Boden" type="Node3D" parent="Objekte"]
+
+[node name="Street" parent="Objekte/Boden" instance=ExtResource("5_ihdcp")]
+
+[node name="Street2" parent="Objekte/Boden" instance=ExtResource("5_ihdcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+
+[node name="Street3" parent="Objekte/Boden" instance=ExtResource("5_ihdcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80)
+
+[node name="Street4" parent="Objekte/Boden" instance=ExtResource("5_ihdcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -120)
+
+[node name="Links" type="Node3D" parent="Objekte"]
+
+[node name="Haus" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4016, -9.53674e-07, -4.49676)
+
+[node name="Haus2" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.40678, 0, 0, 0, 1.43679, 0, 0, 0, 1.122, -20.8105, -9.53674e-07, -15.5079)
+
+[node name="Haus3" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(0.911211, 0, 0, 0, 1.31542, 0, 0, 0, 1.40088, -20.2452, -9.53674e-07, -28.1199)
+
+[node name="Haus4" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.16575, 0, 0, 0, 1.58084, 0, 0, 0, 1.10691, -19.1876, -9.53674e-07, -39.9563)
+
+[node name="Haus5" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.66973, 0, 0, 0, 2.12223, 0, 0, 0, 2.05665, -19.5175, -9.53674e-07, -55.8056)
+
+[node name="Haus6" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.39792, 0, 0, 0, 1.38024, 0, 0, 0, 1.27973, -17.5828, -9.53674e-07, -70.2989)
+
+[node name="Haus7" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.82575, 0, 0, 0, 1.18035, 0, 0, 0, 1.40773, -17.6368, -1.90735e-06, -82.7971)
+
+[node name="Haus8" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.46955, 0, 0, 0, 2.13754, 0, 0, 0, 1.21777, -17.8445, -9.53674e-07, -95.0429)
+
+[node name="Haus9" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(0.919737, 0, 0, 0, 1.41732, 0, 0, 0, 1.46865, -17.3552, 0.0474892, -108.284)
+
+[node name="Haus10" parent="Objekte/Links" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.0283, 0, 0, 0, 0.787153, 0, 0, 0, 1.89805, -17.1927, -9.53674e-07, -123.909)
+
+[node name="Rechts" type="Node3D" parent="Objekte"]
+
+[node name="Haus" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1, 0, 0, 0, 1.36237, 0, 0, 0, 1.18483, 19.6111, -9.53674e-07, -4.62157)
+
+[node name="Haus2" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.17887, 0, 0, 0, 1.20591, 0, 0, 0, 1, 20.5218, 0, 6.78079)
+
+[node name="Haus3" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1, 0, 0, 0, 1.5261, 0, 0, 0, 0.683861, 19.7044, -9.53674e-07, -15.4473)
+
+[node name="Haus4" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1, 0, 0, 0, 1.50173, 0, 0, 0, 1.16595, 19.5318, -1.90735e-06, -25.9901)
+
+[node name="Haus5" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(0.679344, 0, 0, 0, 0.790649, 0, 0, 0, 0.933756, 19.6058, -2.86102e-06, -37.8234)
+
+[node name="Haus6" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(0.774602, 0, 0, 0, 1.80528, 0, 0, 0, 1.26457, 19.5365, -3.8147e-06, -49.4417)
+
+[node name="Haus7" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.1934, 0, 0, 0, 1.44005, 0, 0, 0, 1.09169, 19.5422, -4.76837e-06, -60.9833)
+
+[node name="Haus8" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.43716, 0, 0, 0, 1, 0, 0, 0, 1.21061, 19.5363, -5.72205e-06, -72.3273)
+
+[node name="Haus9" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1, 0, 0, 0, 1.64958, 0, 0, 0, 0.74689, 19.9458, -6.67572e-06, -84.7738)
+
+[node name="Haus10" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1, 0, 0, 0, 0.730326, 0, 0, 0, 1.37096, 20.7859, -7.62939e-06, -97.1936)
+
+[node name="Haus11" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1.34212, 0, 0, 0, 1.71736, 0, 0, 0, 1, 20.469, -8.58307e-06, -109.03)
+
+[node name="Haus12" parent="Objekte/Rechts" instance=ExtResource("3_11bh6")]
+transform = Transform3D(1, 0, 0, 0, 1.13708, 0, 0, 0, 1.55433, 20.7124, -8.58307e-06, -121.458)
+
+[node name="Leute" type="Node3D" parent="Objekte"]
+script = ExtResource("6_rjddn")
+
+[node name="FußgängerGruppe" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.65672, 1, -24.2044)
+
+[node name="FußgängerGruppe2" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.099, 2, -43.2674)
+
+[node name="FußgängerGruppe3" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.50591, 1, -78.6179)
+
+[node name="FußgängerGruppe4" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68634, 1, -55.6552)
+
+[node name="FußgängerGruppe5" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88084, 0.999999, -30.5052)
+
+[connection signal="mood_shift" from="Player" to="Instability" method="_on_player_mood_shift"]
+[connection signal="mood_shift" from="Player" to="MoodShift" method="_on_player_mood_shift"]
+[connection signal="mood_shift_complete" from="MoodShift" to="Instability" method="_on_mood_shift_mood_shift_complete"]
+[connection signal="getBodiedFromPeople" from="Objekte/Leute" to="Player" method="_on_leute_get_bodied_from_people"]
+[connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe" to="Objekte/Leute" method="_on_fugnger_gruppe_get_bodied_from_group"]
+[connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe2" to="Objekte/Leute" method="_on_fugnger_gruppe_2_get_bodied_from_group"]
+[connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe3" to="Objekte/Leute" method="_on_fugnger_gruppe_3_get_bodied_from_group"]
+[connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe4" to="Objekte/Leute" method="_on_fugnger_gruppe_4_get_bodied_from_group"]
+[connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe5" to="Objekte/Leute" method="_on_fugnger_gruppe_5_get_bodied_from_group"]
