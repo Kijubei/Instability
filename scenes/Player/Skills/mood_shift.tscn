@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0hg6ndb2vrxu"]
+
+[ext_resource type="Script" path="res://scenes/Player/Skills/mood_shift.gd" id="1_x47rm"]
+
+[node name="MoodShift" type="Node3D"]
+script = ExtResource("1_x47rm")

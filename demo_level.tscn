@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cul3gjmek75nm"]
+[gd_scene load_steps=7 format=3 uid="uid://6hsj3wthrjgx"]
 
-[ext_resource type="PackedScene" uid="uid://d2asp3tc5rt3d" path="res://scenes/Player.tscn" id="1_4u4gr"]
 [ext_resource type="Script" path="res://demo_level.gd" id="1_kuyee"]
 [ext_resource type="PackedScene" uid="uid://bo6hq0jxub0pp" path="res://scenes/haus.tscn" id="3_11bh6"]
-[ext_resource type="PackedScene" uid="uid://bt7ftwprr0muu" path="res://scenes/Skills/Instability.tscn" id="3_o36rr"]
-[ext_resource type="PackedScene" uid="uid://bfewpjkhc6pru" path="res://scenes/Skills/mood_shift.tscn" id="4_oop37"]
+[ext_resource type="PackedScene" uid="uid://cffnofqm32t27" path="res://scenes/Player/unstable_player.tscn" id="4_br143"]
 [ext_resource type="PackedScene" uid="uid://bv0sopkdlvrdk" path="res://scenes/street.tscn" id="5_ihdcp"]
 [ext_resource type="PackedScene" uid="uid://boxf62wmawto" path="res://scenes/walker_group.tscn" id="5_tcqy0"]
 [ext_resource type="Script" path="res://Leute.gd" id="6_rjddn"]
@@ -15,15 +13,13 @@ script = ExtResource("1_kuyee")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.335797, 0.941934, 0, -0.941934, 0.335797, 0, 6.71627, 0.165482)
 
-[node name="Player" parent="." instance=ExtResource("1_4u4gr")]
-acceleration = 3
-deceleration = 2
+[node name="UnstablePlayer" parent="." instance=ExtResource("4_br143")]
 
-[node name="Instability" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_o36rr")]
-world = NodePath("../Objekte")
+[node name="Instability" parent="UnstablePlayer" index="0" node_paths=PackedStringArray("world")]
+world = NodePath("../../Objekte")
 
-[node name="MoodShift" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_oop37")]
-world = NodePath("../Objekte")
+[node name="MoodShift" parent="UnstablePlayer" index="1" node_paths=PackedStringArray("world")]
+world = NodePath("../../Objekte")
 
 [node name="Objekte" type="Node3D" parent="."]
 
@@ -128,12 +124,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68634, 1, -55.6552)
 [node name="FußgängerGruppe5" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88084, 0.999999, -30.5052)
 
-[connection signal="mood_shift" from="Player" to="Instability" method="_on_player_mood_shift"]
-[connection signal="mood_shift" from="Player" to="MoodShift" method="_on_player_mood_shift"]
-[connection signal="mood_shift_complete" from="MoodShift" to="Instability" method="_on_mood_shift_mood_shift_complete"]
-[connection signal="getBodiedFromPeople" from="Objekte/Leute" to="Player" method="_on_leute_get_bodied_from_people"]
+[connection signal="getBodiedFromPeople" from="Objekte/Leute" to="UnstablePlayer" method="_on_leute_get_bodied_from_people"]
 [connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe" to="Objekte/Leute" method="_on_fugnger_gruppe_get_bodied_from_group"]
 [connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe2" to="Objekte/Leute" method="_on_fugnger_gruppe_2_get_bodied_from_group"]
 [connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe3" to="Objekte/Leute" method="_on_fugnger_gruppe_3_get_bodied_from_group"]
 [connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe4" to="Objekte/Leute" method="_on_fugnger_gruppe_4_get_bodied_from_group"]
 [connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe5" to="Objekte/Leute" method="_on_fugnger_gruppe_5_get_bodied_from_group"]
+
+[editable path="UnstablePlayer"]

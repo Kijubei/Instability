@@ -37,7 +37,7 @@ func shift(directionMultiplier: int):
 func variance() -> int:
 	return randi_range(rotationVarianceMin, rotationVarianceMax)
 
-func _on_player_mood_shift(directionMultiplier):
+func _on_unstable_player_mood_shift(directionMultiplier):
 	shift(directionMultiplier)
 
 func moodShiftDone(directionMultiplier: int):

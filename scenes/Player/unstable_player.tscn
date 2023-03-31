@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cffnofqm32t27"]
+
+[ext_resource type="Script" path="res://scenes/Player/unstable_player.gd" id="1_u53lj"]
+[ext_resource type="PackedScene" uid="uid://fa02u5be3vwq" path="res://scenes/Player/Skills/instability.tscn" id="2_n0n8u"]
+[ext_resource type="PackedScene" uid="uid://c0hg6ndb2vrxu" path="res://scenes/Player/Skills/mood_shift.tscn" id="3_lnjfs"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bberf"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ep30i"]
+albedo_color = Color(0.717647, 0.435294, 0.47451, 1)
+clearcoat_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_n44ga"]
+material = SubResource("ORMMaterial3D_ep30i")
+
+[node name="UnstablePlayer" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_u53lj")
+
+[node name="Instability" parent="." instance=ExtResource("2_n0n8u")]
+
+[node name="MoodShift" parent="." instance=ExtResource("3_lnjfs")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bberf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_n44ga")
+
+[node name="CameraBase" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+current = true
+
+[connection signal="mood_shift" from="." to="Instability" method="_on_unstable_player_mood_shift"]
+[connection signal="mood_shift" from="." to="MoodShift" method="_on_unstable_player_mood_shift"]
+[connection signal="mood_shift_complete" from="MoodShift" to="Instability" method="_on_mood_shift_mood_shift_complete"]

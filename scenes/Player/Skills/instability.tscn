@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fa02u5be3vwq"]
+
+[ext_resource type="Script" path="res://scenes/Player/Skills/instability.gd" id="1_orkhj"]
+
+[node name="Instability" type="Node3D"]
+script = ExtResource("1_orkhj")
