@@ -25,10 +25,9 @@ func randomDirection() -> int:
 	return directions[randi() % directions.size()]
 
 
-func _on_unstable_player_mood_shift(directionMultiplier):
+func _on_mood_shift_started(directionMultiplier):
 	tween.kill()
 
 
-func _on_mood_shift_mood_shift_complete(directionMultiplier):
+func _on_mood_shift_complete(directionMultiplier):
 	turnWorld(directionMultiplier)
-

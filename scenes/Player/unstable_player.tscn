@@ -35,4 +35,5 @@ current = true
 
 [connection signal="mood_shift" from="." to="Instability" method="_on_unstable_player_mood_shift"]
 [connection signal="mood_shift" from="." to="MoodShift" method="_on_unstable_player_mood_shift"]
-[connection signal="mood_shift_complete" from="MoodShift" to="Instability" method="_on_mood_shift_mood_shift_complete"]
+[connection signal="complete" from="MoodShift" to="Instability" method="_on_mood_shift_complete"]
+[connection signal="started" from="MoodShift" to="Instability" method="_on_mood_shift_started"]

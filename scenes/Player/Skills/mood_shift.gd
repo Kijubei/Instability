@@ -1,6 +1,7 @@
 extends Node3D
 
-signal mood_shift_complete(directionMultiplier: int)
+signal started(directionMultiplier: int)
+signal complete(directionMultiplier: int)
 
 @export_category("Customization")
 @export var world: Node3D
@@ -34,12 +35,22 @@ func shift(directionMultiplier: int):
 	tween.play()
 	
 
+## Makes sure the player does not kill himself
+func is_shift_possible(directionMultiplier: int) -> bool:
+	if (world.rotation_degrees.z + 90 * directionMultiplier > 135):
+		return false
+	if (world.rotation_degrees.z + 90 * directionMultiplier < -135):
+		return false
+	return true
+
 func variance() -> int:
 	return randi_range(rotationVarianceMin, rotationVarianceMax)
 
 func _on_unstable_player_mood_shift(directionMultiplier):
-	shift(directionMultiplier)
+	if is_shift_possible(directionMultiplier):
+		emit_signal("started", directionMultiplier)
+		shift(directionMultiplier)
 
 func moodShiftDone(directionMultiplier: int):
 	tween.pause()
-	emit_signal("mood_shift_complete", directionMultiplier)
+	emit_signal("complete", directionMultiplier)
