@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cffnofqm32t27"]
+[gd_scene load_steps=10 format=3 uid="uid://cffnofqm32t27"]
 
 [ext_resource type="Script" path="res://scenes/Player/unstable_player.gd" id="1_u53lj"]
 [ext_resource type="PackedScene" uid="uid://fa02u5be3vwq" path="res://scenes/Player/Skills/instability.tscn" id="2_n0n8u"]
 [ext_resource type="PackedScene" uid="uid://c0hg6ndb2vrxu" path="res://scenes/Player/Skills/mood_shift.tscn" id="3_lnjfs"]
 [ext_resource type="Script" path="res://scenes/Player/PillUI.gd" id="4_37ban"]
 [ext_resource type="Texture2D" uid="uid://cuktcsiub5ef0" path="res://assets/Icons/pill.png" id="4_hv7q4"]
+[ext_resource type="PackedScene" uid="uid://ck7bc6r1xnuko" path="res://scenes/Player/player_animations.tscn" id="6_re1es"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bberf"]
 
@@ -16,7 +17,6 @@ clearcoat_enabled = true
 material = SubResource("ORMMaterial3D_ep30i")
 
 [node name="UnstablePlayer" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_u53lj")
 
 [node name="Instability" parent="." instance=ExtResource("2_n0n8u")]
@@ -24,9 +24,11 @@ script = ExtResource("1_u53lj")
 [node name="MoodShift" parent="." instance=ExtResource("3_lnjfs")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_bberf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_n44ga")
 
 [node name="CameraBase" type="Node3D" parent="."]
@@ -57,6 +59,8 @@ offset_bottom = 16.0
 texture = ExtResource("4_hv7q4")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="animationsSetup" parent="." instance=ExtResource("6_re1es")]
 
 [connection signal="mood_shift" from="." to="MoodShift" method="_on_unstable_player_mood_shift"]
 [connection signal="complete" from="MoodShift" to="Instability" method="_on_mood_shift_complete"]
