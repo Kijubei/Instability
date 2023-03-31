@@ -22,9 +22,6 @@ func _ready():
 	tween.pause()
 	
 func shift(directionMultiplier: int):
-
-	if tween.is_running():
-		return
 	
 	# Ich weiß nicht warum der hier immer wieder erstellt werden muss
 	tween = create_tween()
@@ -47,7 +44,7 @@ func variance() -> int:
 	return randi_range(rotationVarianceMin, rotationVarianceMax)
 
 func _on_unstable_player_mood_shift(directionMultiplier):
-	if is_shift_possible(directionMultiplier):
+	if is_shift_possible(directionMultiplier) and not tween.is_running():
 		emit_signal("started")
 		shift(directionMultiplier)
 

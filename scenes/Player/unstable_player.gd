@@ -24,6 +24,7 @@ const vLookSensibility = 0.2
 
 var _state = walk
 
+@onready var pillUI: PillUI = $PillUI
 @onready var cameraBase = $CameraBase
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier)
 
@@ -62,10 +63,13 @@ func checkState():
 		_state = walk
 		
 func checkActions():
-	if Input.is_action_just_released("mood_shift_left"):
-		moodShift(1)
-	if Input.is_action_just_released("mood_shift_right"):
-		moodShift(-1)
+	if pillUI.pills > 0:
+		if Input.is_action_just_released("mood_shift_left"):
+			moodShift(1)
+
+		if Input.is_action_just_released("mood_shift_right"):
+			moodShift(-1)
+
 		
 
 func moodShift(direction: int):

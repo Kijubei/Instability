@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bqr48j10cmt6j"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor_description = "asdasd
+"

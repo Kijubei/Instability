@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cffnofqm32t27"]
+[gd_scene load_steps=9 format=3 uid="uid://cffnofqm32t27"]
 
 [ext_resource type="Script" path="res://scenes/Player/unstable_player.gd" id="1_u53lj"]
 [ext_resource type="PackedScene" uid="uid://fa02u5be3vwq" path="res://scenes/Player/Skills/instability.tscn" id="2_n0n8u"]
 [ext_resource type="PackedScene" uid="uid://c0hg6ndb2vrxu" path="res://scenes/Player/Skills/mood_shift.tscn" id="3_lnjfs"]
+[ext_resource type="Script" path="res://scenes/Player/PillUI.gd" id="4_37ban"]
+[ext_resource type="Texture2D" uid="uid://cuktcsiub5ef0" path="res://assets/Icons/pill.png" id="4_hv7q4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bberf"]
 
@@ -33,6 +35,30 @@ mesh = SubResource("CapsuleMesh_n44ga")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
 current = true
 
+[node name="PillUI" type="Control" parent="."]
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 30.0
+offset_right = 48.0
+offset_bottom = 46.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+script = ExtResource("4_37ban")
+
+[node name="Pill" type="TextureRect" parent="PillUI"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("4_hv7q4")
+expand_mode = 1
+stretch_mode = 1
+
 [connection signal="mood_shift" from="." to="MoodShift" method="_on_unstable_player_mood_shift"]
 [connection signal="complete" from="MoodShift" to="Instability" method="_on_mood_shift_complete"]
 [connection signal="started" from="MoodShift" to="Instability" method="_on_mood_shift_started"]
+[connection signal="started" from="MoodShift" to="PillUI" method="_on_mood_shift_started"]
