@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxrvqrxam7h7h"]
+
+[ext_resource type="Script" path="res://scenes/Items/pill.gd" id="1_gfs2s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nqqda"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qw0pc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_htrkm"]
+
+[node name="Pill" type="StaticBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.178201, -0.0907981, 0, 0.0907981, 0.178201, 0, 0, 0)
+script = ExtResource("1_gfs2s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_nqqda")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_qw0pc")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("SphereShape3D_htrkm")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

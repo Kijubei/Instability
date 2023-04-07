@@ -70,8 +70,6 @@ func checkActions():
 		if Input.is_action_just_released("mood_shift_right"):
 			moodShift(-1)
 
-		
-
 func moodShift(direction: int):
 	emit_signal("mood_shift", direction)
 
@@ -113,3 +111,7 @@ func _on_leute_get_bodied_from_people(bumpPower, directionNormalized):
 	_state = bodied
 	
 	velocity = velocity.move_toward(directionNormalized * bumpPower, bumpPower)
+
+func gainPill():
+	if pillUI.pills < pillUI.max_pills:
+		pillUI.setPills(pillUI.pills+1)

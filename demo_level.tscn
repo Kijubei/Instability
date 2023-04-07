@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://6hsj3wthrjgx"]
+[gd_scene load_steps=8 format=3 uid="uid://6hsj3wthrjgx"]
 
 [ext_resource type="Script" path="res://demo_level.gd" id="1_kuyee"]
 [ext_resource type="PackedScene" uid="uid://bo6hq0jxub0pp" path="res://scenes/haus.tscn" id="3_11bh6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bv0sopkdlvrdk" path="res://scenes/street.tscn" id="5_ihdcp"]
 [ext_resource type="PackedScene" uid="uid://boxf62wmawto" path="res://scenes/walker_group.tscn" id="5_tcqy0"]
 [ext_resource type="Script" path="res://Leute.gd" id="6_rjddn"]
+[ext_resource type="PackedScene" uid="uid://dxrvqrxam7h7h" path="res://scenes/Items/pill.tscn" id="7_mwxyp"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_kuyee")
@@ -123,6 +124,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68634, 1, -55.6552)
 
 [node name="FußgängerGruppe5" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88084, 0.999999, -30.5052)
+
+[node name="Items" type="Node3D" parent="Objekte"]
+
+[node name="Pill" parent="Objekte/Items" instance=ExtResource("7_mwxyp")]
+transform = Transform3D(0.2, 0, 0, 0, 0.178201, -0.0907981, 0, 0.0907981, 0.178201, -1.17, 1.43875, -1.04243)
+
+[node name="Pill2" parent="Objekte/Items" instance=ExtResource("7_mwxyp")]
+transform = Transform3D(0.2, 0, 0, 0, 0.178201, -0.0907981, 0, 0.0907981, 0.178201, -6.37613, 1.43875, -11.7356)
+
+[node name="Pill3" parent="Objekte/Items" instance=ExtResource("7_mwxyp")]
+transform = Transform3D(0.2, 0, 0, 0, 0.178201, -0.0907981, 0, 0.0907981, 0.178201, -7.46372, 5.18239, -32.0405)
 
 [connection signal="getBodiedFromPeople" from="Objekte/Leute" to="UnstablePlayer" method="_on_leute_get_bodied_from_people"]
 [connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe" to="Objekte/Leute" method="_on_fugnger_gruppe_get_bodied_from_group"]
