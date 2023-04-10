@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c50e3y37u2k2b"]
+
+[ext_resource type="PackedScene" uid="uid://durewfihsqp85" path="res://assets/Building1/B1_2ndF_00.glb" id="1_smo1s"]
+
+[node name="B1_2ndF_00" instance=ExtResource("1_smo1s")]
+
+[node name="B1_2ndF_002" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

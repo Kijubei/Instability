@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0hg6ndb2vrxu" path="res://scenes/Player/Skills/mood_shift.tscn" id="3_lnjfs"]
 [ext_resource type="Script" path="res://scenes/Player/PillUI.gd" id="4_37ban"]
 [ext_resource type="Texture2D" uid="uid://cuktcsiub5ef0" path="res://assets/Icons/pill.png" id="4_hv7q4"]
-[ext_resource type="PackedScene" path="res://scenes/Player/player_animations.tscn" id="6_re1es"]
+[ext_resource type="PackedScene" uid="uid://ck7bc6r1xnuko" path="res://scenes/Player/player_animations.tscn" id="6_re1es"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bberf"]
 
@@ -34,7 +34,7 @@ mesh = SubResource("CapsuleMesh_n44ga")
 [node name="CameraBase" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraBase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.242, 1.5, 2.937)
 current = true
 
 [node name="PillUI" type="Control" parent="."]

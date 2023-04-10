@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb2hbemmre5gl"]
+
+[ext_resource type="PackedScene" uid="uid://qjl6nhtwasuf" path="res://assets/Building1/B1_Roof_flat_00.glb" id="1_hxibs"]
+
+[node name="B1_Roof_flat_00" instance=ExtResource("1_hxibs")]
+
+[node name="B1_Roof_flat" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

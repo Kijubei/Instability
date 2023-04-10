@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3qosuet828kv"]
+
+[ext_resource type="PackedScene" uid="uid://cuvs1ubimf4ef" path="res://scenes/buildings/Building1/B1_GF_01.tscn" id="1_ocdsj"]
+[ext_resource type="PackedScene" uid="uid://chu0e157wssmr" path="res://scenes/buildings/Building1/B1_Roof_angled_00.tscn" id="4_sbmi6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_idq15"]
+size = Vector3(5.95053, 5.7207, 8.08944)
+
+[node name="Building1_04" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8605, 0)
+shape = SubResource("BoxShape3D_idq15")
+
+[node name="B1_GF_01" parent="StaticBody3D" instance=ExtResource("1_ocdsj")]
+
+[node name="B1_Roof_angled_00" parent="StaticBody3D" instance=ExtResource("4_sbmi6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.50979, 0)

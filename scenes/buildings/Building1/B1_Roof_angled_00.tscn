@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://chu0e157wssmr"]
+
+[ext_resource type="PackedScene" uid="uid://dd7i4ko0hk71o" path="res://assets/Building1/B1_Roof_angled_00.glb" id="1_gt88i"]
+
+[node name="B1_Roof_angled_00" instance=ExtResource("1_gt88i")]
+
+[node name="B1_Roof_angled" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

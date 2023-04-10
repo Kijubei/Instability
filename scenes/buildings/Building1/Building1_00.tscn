@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2sgby8lejaip"]
+
+[ext_resource type="PackedScene" uid="uid://bxne4jpigtsw5" path="res://scenes/buildings/Building1/B1_GF_00.tscn" id="1_jpokx"]
+[ext_resource type="PackedScene" uid="uid://8mthhg1n2mde" path="res://scenes/buildings/Building1/B1_1stF_00.tscn" id="2_7i7kj"]
+[ext_resource type="PackedScene" uid="uid://c50e3y37u2k2b" path="res://scenes/buildings/Building1/B1_2ndF_00.tscn" id="3_3k1va"]
+[ext_resource type="PackedScene" uid="uid://chu0e157wssmr" path="res://scenes/buildings/Building1/B1_Roof_angled_00.tscn" id="4_6yrci"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_idq15"]
+size = Vector3(5.95053, 12.3533, 8.08944)
+
+[node name="Building1_00" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.17695, 0)
+shape = SubResource("BoxShape3D_idq15")
+
+[node name="B1_GF_00" parent="StaticBody3D" instance=ExtResource("1_jpokx")]
+
+[node name="B1_1stF_00" parent="StaticBody3D" instance=ExtResource("2_7i7kj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.53, 0)
+
+[node name="B1_2ndF_00" parent="StaticBody3D" instance=ExtResource("3_3k1va")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.85145, 0)
+
+[node name="B1_Roof_angled_00" parent="StaticBody3D" instance=ExtResource("4_6yrci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2221, 0)
