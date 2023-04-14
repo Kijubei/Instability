@@ -1,20 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cffnofqm32t27"]
+[gd_scene load_steps=8 format=3 uid="uid://cffnofqm32t27"]
 
 [ext_resource type="Script" path="res://scenes/Player/unstable_player.gd" id="1_u53lj"]
 [ext_resource type="PackedScene" uid="uid://fa02u5be3vwq" path="res://scenes/Player/Skills/instability.tscn" id="2_n0n8u"]
 [ext_resource type="PackedScene" uid="uid://c0hg6ndb2vrxu" path="res://scenes/Player/Skills/mood_shift.tscn" id="3_lnjfs"]
 [ext_resource type="Script" path="res://scenes/Player/PillUI.gd" id="4_37ban"]
 [ext_resource type="Texture2D" uid="uid://cuktcsiub5ef0" path="res://assets/Icons/pill.png" id="4_hv7q4"]
-[ext_resource type="PackedScene" uid="uid://ck7bc6r1xnuko" path="res://scenes/Player/player_animations.tscn" id="6_re1es"]
+[ext_resource type="PackedScene" uid="uid://dy7nbxukgf23g" path="res://scenes/Player/player_animations.tscn" id="6_re1es"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bberf"]
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ep30i"]
-albedo_color = Color(0.717647, 0.435294, 0.47451, 1)
-clearcoat_enabled = true
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_n44ga"]
-material = SubResource("ORMMaterial3D_ep30i")
 
 [node name="UnstablePlayer" type="CharacterBody3D"]
 script = ExtResource("1_u53lj")
@@ -26,10 +19,6 @@ script = ExtResource("1_u53lj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_bberf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_n44ga")
 
 [node name="CameraBase" type="Node3D" parent="."]
 
@@ -62,7 +51,26 @@ stretch_mode = 1
 
 [node name="animationsSetup" parent="." instance=ExtResource("6_re1es")]
 
+[node name="Skeleton3D" parent="animationsSetup/control_rig" index="0"]
+bones/1/position = Vector3(-0.00635073, 0.0637853, 0.884761)
+bones/1/rotation = Quaternion(0.782698, 0.0388691, 0.0308104, 0.620422)
+bones/6/rotation = Quaternion(-0.609237, 0.075642, -0.132458, 0.778179)
+bones/7/rotation = Quaternion(2.99e-07, -0.0123035, -5.01327e-08, 0.999924)
+bones/31/rotation = Quaternion(-0.606838, -0.0928922, 0.0728546, 0.78601)
+bones/32/rotation = Quaternion(2.0919e-07, -0.0109063, 1.03823e-07, 0.999941)
+bones/55/rotation = Quaternion(0.51796, -0.0282804, -0.0016928, 0.854936)
+bones/56/rotation = Quaternion(-0.38896, -0.00828912, 0.0112141, 0.921149)
+bones/57/rotation = Quaternion(-0.0172764, 0.0996429, 0.994748, -0.0158142)
+bones/58/rotation = Quaternion(-3.92951e-09, -0.0681815, 1.68719e-08, 0.997673)
+bones/59/rotation = Quaternion(-0.0402098, 0.0101943, 0.0100968, 0.999088)
+bones/61/rotation = Quaternion(0.546648, -0.00644927, -0.0245394, 0.836978)
+bones/63/rotation = Quaternion(-0.0327698, 0.131269, 0.9907, 0.0144088)
+bones/64/rotation = Quaternion(9.04529e-10, 0.115699, -1.3063e-08, 0.993284)
+bones/67/rotation = Quaternion(0.524544, 0.00675994, 0.0227912, 0.851051)
+
 [connection signal="mood_shift" from="." to="MoodShift" method="_on_unstable_player_mood_shift"]
 [connection signal="complete" from="MoodShift" to="Instability" method="_on_mood_shift_complete"]
 [connection signal="started" from="MoodShift" to="Instability" method="_on_mood_shift_started"]
 [connection signal="started" from="MoodShift" to="PillUI" method="_on_mood_shift_started"]
+
+[editable path="animationsSetup"]

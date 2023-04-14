@@ -29,9 +29,27 @@ shadow_enabled = true
 
 [node name="Instability" parent="UnstablePlayer" index="0" node_paths=PackedStringArray("world")]
 world = NodePath("../../Objekte")
+enabled = false
 
 [node name="MoodShift" parent="UnstablePlayer" index="1" node_paths=PackedStringArray("world")]
 world = NodePath("../../Objekte")
+
+[node name="Skeleton3D" parent="UnstablePlayer/animationsSetup/control_rig" index="0"]
+bones/1/position = Vector3(0.00257327, 0.0642225, 0.884761)
+bones/1/rotation = Quaternion(0.783506, -0.0156904, -0.0124373, 0.621062)
+bones/6/rotation = Quaternion(-0.609302, 0.0749143, -0.13495, 0.777771)
+bones/7/rotation = Quaternion(3.87746e-07, -0.0132766, -3.70398e-08, 0.999912)
+bones/31/rotation = Quaternion(-0.608402, -0.0858305, 0.0975381, 0.782922)
+bones/32/rotation = Quaternion(1.9176e-07, -0.00130233, 9.26161e-08, 0.999999)
+bones/55/rotation = Quaternion(0.518168, 2.34167e-07, 1.51141e-08, 0.855279)
+bones/56/rotation = Quaternion(-0.389161, 0.00910651, -0.00432955, 0.921115)
+bones/57/rotation = Quaternion(-0.016658, -0.0898823, -0.995785, 0.00744105)
+bones/58/rotation = Quaternion(-2.99893e-09, -0.102707, 2.32372e-08, 0.994712)
+bones/59/rotation = Quaternion(-0.0368368, 0.0102284, 0.0100624, 0.999218)
+bones/61/rotation = Quaternion(0.551237, -0.00637641, -0.0233875, 0.833997)
+bones/63/rotation = Quaternion(0.00177541, 0.140165, 0.98996, 0.0181384)
+bones/64/rotation = Quaternion(-5.50868e-09, 0.0810747, -9.19041e-09, 0.996708)
+bones/67/rotation = Quaternion(0.518068, 0.00690173, 0.0233835, 0.854992)
 
 [node name="Objekte" type="Node3D" parent="."]
 
@@ -226,3 +244,4 @@ transform = Transform3D(0.2, 0, 0, 0, 0.178201, -0.0907981, 0, 0.0907981, 0.1782
 [connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe5" to="Objekte/Leute" method="_on_fugnger_gruppe_5_get_bodied_from_group"]
 
 [editable path="UnstablePlayer"]
+[editable path="UnstablePlayer/animationsSetup"]

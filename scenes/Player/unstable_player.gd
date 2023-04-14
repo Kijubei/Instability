@@ -5,8 +5,10 @@ extends CharacterBody3D
 signal mood_shift(directionMultiplier: int)
 
 enum PlayerState {
+	idle,
 	walk,
-	sprint,
+	run,
+	jump,
 	bodied,
 }
 
@@ -15,18 +17,19 @@ const vLookSensibility = 0.2
 
 @export_category("Movement")
 @export var gravity_multiplier = 3
-@export var speed = 10.0
+@export var speed = 7.0
 @export var acceleration = 3
 @export var deceleration = 2
 @export var air_control = 0.3
 @export var jump_height = 10
-@export var sprint_speed_multiplier = 1.6
+@export var run_speed_multiplier = 1.6
 
-var _state = walk
+var state: int = PlayerState.idle
 
 @onready var pillUI: PillUI = $PillUI
 @onready var cameraBase = $CameraBase
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier)
+@onready var animationPlayer: AnimationPlayer = $animationsSetup/AnimationPlayer
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -39,29 +42,55 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
-	checkState()
+	state = getCurrentState()
 	checkActions()
-
-	match _state:
-		walk:
+	
+	match state:
+		PlayerState.idle:
+			idle(delta)
+		PlayerState.walk:
 			walk(delta)
-		sprint:
-			sprint(delta)
-		bodied:
+		PlayerState.run:
+			run(delta)
+		PlayerState.jump:
+			jump(delta)
+		PlayerState.bodied:
 			bodied(delta)
 	
 
-func checkState():
-	if _state == bodied:
-		if velocity.x == 0 and velocity.z == 0:
-			_state = walk
-		return 
+func getCurrentState() -> PlayerState:
+	if not is_on_floor():
+		return PlayerState.jump
 	
-	if Input.is_action_pressed("sprint"):
-		_state = sprint
-	else:
-		_state = walk
+	if state == PlayerState.bodied:
+		if velocity.x == 0 and velocity.z == 0:
+			return PlayerState.idle
+	
+	if Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") != Vector2.ZERO:
+		if Input.is_action_pressed("run"):
+			return PlayerState.run
+		return PlayerState.walk
+	
+	return PlayerState.idle
+
+func setAnimation():
+	if state == PlayerState.bodied:
+		animationPlayer.play("use")
+		return
 		
+	if not is_on_floor():
+		animationPlayer.play("jump")
+		return
+	
+	if velocity.x != 0 or velocity.z != 0:
+		if Input.is_action_pressed("run"):
+			animationPlayer.play("run")
+		else:
+			animationPlayer.play("walk")
+		return
+	
+	animationPlayer.play("idle")
+
 func checkActions():
 	if pillUI.pills > 0:
 		if Input.is_action_just_released("mood_shift_left"):
@@ -73,22 +102,33 @@ func checkActions():
 func moodShift(direction: int):
 	emit_signal("mood_shift", direction)
 
-func walk(delta):
+func idle(delta):
+	animationPlayer.play("idle")
 	applyInput(delta)
 
-func sprint(delta):
+func walk(delta):
+	animationPlayer.play("walk")
 	applyInput(delta)
-	
+
+func run(delta):
+	animationPlayer.play("run")
+	applyInput(delta)
+
+func jump(delta):
+	animationPlayer.play("jump")
+	applyInput(delta)
+
 func bodied(delta):
+	animationPlayer.play("use")
 	velocity.x = move_toward(velocity.x, 0, deceleration * 60 * delta)
 	velocity.z = move_toward(velocity.z, 0, deceleration * 60 * delta)
 	
 	move_and_slide()
 
 func applyInput(delta):
-	var maxSpeed = speed * sprint_speed_multiplier if _state == sprint else speed
+	var maxSpeed = speed * run_speed_multiplier if state == PlayerState.run else speed
 	
-	# Handle Jump.
+	# Handle Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_height
 		
@@ -108,7 +148,7 @@ func applyInput(delta):
 	move_and_slide()
 
 func _on_leute_get_bodied_from_people(bumpPower, directionNormalized):
-	_state = bodied
+	state = PlayerState.bodied
 	
 	velocity = velocity.move_toward(directionNormalized * bumpPower, bumpPower)
 

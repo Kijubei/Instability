@@ -2,6 +2,7 @@ extends Node3D
 
 @export_category("Customization")
 @export var world: Node3D
+@export var enabled = true
 @export var roationMultiplier = 2
 @export var rotationDelay = 1
 
@@ -11,13 +12,13 @@ func _ready():
 	if not world:
 		push_error("world not initialized for instability")
 		get_tree().quit()
-
 	turnWorld(randomDirection())
 
 
 func turnWorld(inDirection: int):
-	tween = create_tween()
-	tween.tween_property(world,"rotation_degrees:z",180*inDirection, 60*roationMultiplier).as_relative().set_delay(rotationDelay)
+	if enabled: 
+		tween = create_tween()
+		tween.tween_property(world,"rotation_degrees:z",180*inDirection, 60*roationMultiplier).as_relative().set_delay(rotationDelay)
 
 
 func randomDirection() -> int:
@@ -26,7 +27,8 @@ func randomDirection() -> int:
 
 
 func _on_mood_shift_started():
-	tween.kill()
+	if tween != null:
+		tween.kill()
 
 
 func _on_mood_shift_complete(directionMultiplier):
