@@ -10,6 +10,7 @@ enum PlayerState {
 	run,
 	jump,
 	bodied,
+	fainted,
 }
 
 const hLookSensibility = 0.2
@@ -56,9 +57,14 @@ func _physics_process(delta):
 			jump(delta)
 		PlayerState.bodied:
 			bodied(delta)
+		PlayerState.fainted:
+			fainted(delta)
 	
 
 func getCurrentState() -> PlayerState:
+	if state == PlayerState.fainted:
+		return PlayerState.fainted
+	
 	if not is_on_floor():
 		return PlayerState.jump
 	
@@ -72,24 +78,6 @@ func getCurrentState() -> PlayerState:
 		return PlayerState.walk
 	
 	return PlayerState.idle
-
-func setAnimation():
-	if state == PlayerState.bodied:
-		animationPlayer.play("use")
-		return
-		
-	if not is_on_floor():
-		animationPlayer.play("jump")
-		return
-	
-	if velocity.x != 0 or velocity.z != 0:
-		if Input.is_action_pressed("run"):
-			animationPlayer.play("run")
-		else:
-			animationPlayer.play("walk")
-		return
-	
-	animationPlayer.play("idle")
 
 func checkActions():
 	if pillUI.pills > 0:
@@ -125,6 +113,13 @@ func bodied(delta):
 	
 	move_and_slide()
 
+func fainted(delta):
+	animationPlayer.play("use")
+	velocity.x = move_toward(velocity.x, 0, deceleration * 60 * delta)
+	velocity.z = move_toward(velocity.z, 0, deceleration * 60 * delta)
+	
+	move_and_slide()
+
 func applyInput(delta):
 	var maxSpeed = speed * run_speed_multiplier if state == PlayerState.run else speed
 	
@@ -148,10 +143,13 @@ func applyInput(delta):
 	move_and_slide()
 
 func _on_leute_get_bodied_from_people(bumpPower, directionNormalized):
-	state = PlayerState.bodied
-	
+	if state != PlayerState.fainted:
+		state = PlayerState.bodied
 	velocity = velocity.move_toward(directionNormalized * bumpPower, bumpPower)
 
 func gainPill():
 	if pillUI.pills < pillUI.max_pills:
 		pillUI.setPills(pillUI.pills+1)
+
+func faint():
+	state = PlayerState.fainted

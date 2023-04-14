@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://6hsj3wthrjgx"]
+[gd_scene load_steps=18 format=3 uid="uid://6hsj3wthrjgx"]
 
 [ext_resource type="Script" path="res://demo_level.gd" id="1_kuyee"]
+[ext_resource type="PackedScene" uid="uid://bgestv6y0v5os" path="res://scenes/Effects/game_over_line.tscn" id="3_3o20l"]
 [ext_resource type="PackedScene" uid="uid://bo6hq0jxub0pp" path="res://scenes/haus.tscn" id="3_11bh6"]
 [ext_resource type="PackedScene" uid="uid://cffnofqm32t27" path="res://scenes/Player/unstable_player.tscn" id="4_br143"]
 [ext_resource type="PackedScene" uid="uid://d2sgby8lejaip" path="res://scenes/buildings/Building1/Building1_00.tscn" id="5_4n33a"]
@@ -21,7 +22,7 @@
 script = ExtResource("1_kuyee")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.335797, 0.941934, 0, -0.941934, 0.335797, 0, 6.71627, 0.165482)
+transform = Transform3D(1, 0, 0, 0, -0.636441, 0.771325, 0, -0.771325, -0.636441, 0, 6.71627, 0.165482)
 light_color = Color(1, 0.764706, 0.670588, 1)
 shadow_enabled = true
 
@@ -52,6 +53,9 @@ bones/64/rotation = Quaternion(-5.50868e-09, 0.0810747, -9.19041e-09, 0.996708)
 bones/67/rotation = Quaternion(0.518068, 0.00690173, 0.0233835, 0.854992)
 
 [node name="Objekte" type="Node3D" parent="."]
+
+[node name="GameOverLine" parent="Objekte" instance=ExtResource("3_3o20l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0130663, 0.0244827, 20.0176)
 
 [node name="Boden" type="Node3D" parent="Objekte"]
 

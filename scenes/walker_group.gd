@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export_category("Einstellungen")
+@export_category("Customization")
 @export var moveSpeed = 3
 @export var groupBumpPower = 50
 

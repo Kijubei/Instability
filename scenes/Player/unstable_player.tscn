@@ -9,7 +9,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bberf"]
 
-[node name="UnstablePlayer" type="CharacterBody3D"]
+[node name="UnstablePlayer" type="CharacterBody3D" groups=["player"]]
+collision_layer = 3
 script = ExtResource("1_u53lj")
 
 [node name="Instability" parent="." instance=ExtResource("2_n0n8u")]

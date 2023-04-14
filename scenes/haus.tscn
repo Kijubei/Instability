@@ -18,6 +18,8 @@ uv1_scale = Vector3(10, 10, 10)
 material = SubResource("StandardMaterial3D_y0ira")
 
 [node name="Haus" type="StaticBody3D"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
