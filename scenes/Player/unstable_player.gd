@@ -30,7 +30,7 @@ var state: int = PlayerState.idle
 @onready var pillUI: PillUI = $PillUI
 @onready var cameraBase = $CameraBase
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier)
-@onready var animationPlayer: AnimationPlayer = $animationsSetup/AnimationPlayer
+@onready var animationPlayer: AnimationPlayer = $"animations-treadmill/AnimationPlayer"
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -107,14 +107,14 @@ func jump(delta):
 	applyInput(delta)
 
 func bodied(delta):
-	animationPlayer.play("use")
+	animationPlayer.play("barged")
 	velocity.x = move_toward(velocity.x, 0, deceleration * 60 * delta)
 	velocity.z = move_toward(velocity.z, 0, deceleration * 60 * delta)
 	
 	move_and_slide()
 
 func fainted(delta):
-	animationPlayer.play("use")
+	animationPlayer.play("faint")
 	velocity.x = move_toward(velocity.x, 0, deceleration * 60 * delta)
 	velocity.z = move_toward(velocity.z, 0, deceleration * 60 * delta)
 	

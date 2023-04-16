@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0hg6ndb2vrxu" path="res://scenes/Player/Skills/mood_shift.tscn" id="3_lnjfs"]
 [ext_resource type="Script" path="res://scenes/Player/PillUI.gd" id="4_37ban"]
 [ext_resource type="Texture2D" uid="uid://cuktcsiub5ef0" path="res://assets/Icons/pill.png" id="4_hv7q4"]
-[ext_resource type="PackedScene" uid="uid://dy7nbxukgf23g" path="res://scenes/Player/player_animations.tscn" id="6_re1es"]
+[ext_resource type="PackedScene" uid="uid://ds4026u0366rt" path="res://scenes/Player/player_animations_treadmill.tscn" id="6_5sr2h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bberf"]
 
@@ -24,7 +24,7 @@ shape = SubResource("CapsuleShape3D_bberf")
 [node name="CameraBase" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraBase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.242, 1.5, 2.937)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
 current = true
 
 [node name="PillUI" type="Control" parent="."]
@@ -50,28 +50,50 @@ texture = ExtResource("4_hv7q4")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="animationsSetup" parent="." instance=ExtResource("6_re1es")]
+[node name="animations-treadmill" parent="." instance=ExtResource("6_5sr2h")]
 
-[node name="Skeleton3D" parent="animationsSetup/control_rig" index="0"]
-bones/1/position = Vector3(-0.00635073, 0.0637853, 0.884761)
-bones/1/rotation = Quaternion(0.782698, 0.0388691, 0.0308104, 0.620422)
-bones/6/rotation = Quaternion(-0.609237, 0.075642, -0.132458, 0.778179)
-bones/7/rotation = Quaternion(2.99e-07, -0.0123035, -5.01327e-08, 0.999924)
-bones/31/rotation = Quaternion(-0.606838, -0.0928922, 0.0728546, 0.78601)
-bones/32/rotation = Quaternion(2.0919e-07, -0.0109063, 1.03823e-07, 0.999941)
-bones/55/rotation = Quaternion(0.51796, -0.0282804, -0.0016928, 0.854936)
-bones/56/rotation = Quaternion(-0.38896, -0.00828912, 0.0112141, 0.921149)
-bones/57/rotation = Quaternion(-0.0172764, 0.0996429, 0.994748, -0.0158142)
-bones/58/rotation = Quaternion(-3.92951e-09, -0.0681815, 1.68719e-08, 0.997673)
-bones/59/rotation = Quaternion(-0.0402098, 0.0101943, 0.0100968, 0.999088)
-bones/61/rotation = Quaternion(0.546648, -0.00644927, -0.0245394, 0.836978)
-bones/63/rotation = Quaternion(-0.0327698, 0.131269, 0.9907, 0.0144088)
-bones/64/rotation = Quaternion(9.04529e-10, 0.115699, -1.3063e-08, 0.993284)
-bones/67/rotation = Quaternion(0.524544, 0.00675994, 0.0227912, 0.851051)
+[node name="Skeleton3D" parent="animations-treadmill/control_rig" index="0"]
+bones/0/position = Vector3(-0.00257348, 0.884761, 0.0381635)
+bones/0/rotation = Quaternion(0.00230028, 0.993179, -0.114865, 0.0198891)
+bones/2/rotation = Quaternion(-0.177362, -2.31522e-07, 3.90512e-10, 0.984146)
+bones/3/rotation = Quaternion(-7.27014e-08, -1.89198e-09, 3.47391e-10, 1)
+bones/4/rotation = Quaternion(0.518168, 1.06288e-07, 7.02584e-08, 0.855279)
+bones/5/rotation = Quaternion(-0.389161, 0.00910653, -0.00432954, 0.921115)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.521268, -0.406551, -0.46145, 0.591659)
+bones/6/scale = Vector3(0.999999, 1, 0.999999)
+bones/7/rotation = Quaternion(-0.609302, 0.0749143, -0.13495, 0.777771)
+bones/7/scale = Vector3(1, 0.999999, 1)
+bones/8/rotation = Quaternion(2.86389e-07, -0.0132766, 9.39647e-08, 0.999912)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-0.0540227, -0.00844826, -0.0641852, 0.996439)
+bones/10/rotation = Quaternion(3.15595e-09, 1.55269e-08, 4.52856e-08, 1)
+bones/30/rotation = Quaternion(-0.177627, 1.75749e-07, -5.92535e-08, 0.984098)
+bones/31/rotation = Quaternion(-0.530516, 0.394407, 0.447666, 0.602155)
+bones/32/rotation = Quaternion(-0.608402, -0.0858303, 0.0975379, 0.782922)
+bones/32/scale = Vector3(1, 0.999999, 1)
+bones/33/rotation = Quaternion(1.97765e-07, -0.00130231, 5.34847e-08, 0.999999)
+bones/34/rotation = Quaternion(-0.0540227, 0.00844826, 0.0641851, 0.996439)
+bones/56/scale = Vector3(0.998653, 1.0027, 0.998652)
+bones/57/rotation = Quaternion(-7.86068e-09, -0.102707, 3.12816e-08, 0.994712)
+bones/58/rotation = Quaternion(-0.0368368, 0.0102284, 0.0100623, 0.999218)
+bones/58/scale = Vector3(0.999678, 1.00063, 0.999691)
+bones/59/rotation = Quaternion(1.14141e-08, 3.81864e-07, 6.44752e-08, 1)
+bones/60/rotation = Quaternion(0.551236, -0.00637645, -0.0233874, 0.833997)
+bones/60/scale = Vector3(0.999992, 0.999472, 0.997204)
+bones/61/rotation = Quaternion(0.25825, 1.71355e-07, 7.35018e-09, 0.966078)
+bones/62/rotation = Quaternion(0.00177537, 0.140165, 0.98996, 0.0181384)
+bones/63/rotation = Quaternion(-3.02781e-09, 0.0810747, 4.98395e-09, 0.996708)
+bones/64/rotation = Quaternion(-0.0480649, -0.0101146, -0.0101766, 0.998741)
+bones/64/scale = Vector3(0.999954, 1.00009, 0.999954)
+bones/65/rotation = Quaternion(1.66906e-08, -3.32804e-08, -5.34038e-09, 1)
+bones/66/rotation = Quaternion(0.518068, 0.00690168, 0.0233834, 0.854992)
+bones/66/scale = Vector3(0.999999, 0.999895, 0.999625)
+bones/67/rotation = Quaternion(0.25825, -1.90874e-07, 8.19518e-08, 0.966078)
 
 [connection signal="mood_shift" from="." to="MoodShift" method="_on_unstable_player_mood_shift"]
 [connection signal="complete" from="MoodShift" to="Instability" method="_on_mood_shift_complete"]
 [connection signal="started" from="MoodShift" to="Instability" method="_on_mood_shift_started"]
 [connection signal="started" from="MoodShift" to="PillUI" method="_on_mood_shift_started"]
 
-[editable path="animationsSetup"]
+[editable path="animations-treadmill"]
