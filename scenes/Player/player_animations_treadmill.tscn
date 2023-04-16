@@ -43,6 +43,9 @@ node_connections = [&"output", 0, &"movements", &"movements", 0, &"Idle", &"move
 
 [node name="animations-treadmill" instance=ExtResource("1_l84r4")]
 
+[node name="control_rig" parent="." index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
 [node name="Skeleton3D" parent="control_rig" index="0"]
 bones/0/position = Vector3(0.00257327, 0.884761, -0.0381635)
 bones/0/rotation = Quaternion(0.114865, -0.0198893, 0.0023003, 0.993179)
