@@ -30,7 +30,7 @@ var state: int = PlayerState.idle
 @onready var pillUI: PillUI = $PillUI
 @onready var cameraBase = $CameraBase
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier)
-@onready var animationPlayer: AnimationPlayer = $"animations-treadmill/AnimationPlayer"
+@onready var animationTree: AnimationTree = $"animations-treadmill/AnimationTree"
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -70,7 +70,8 @@ func getCurrentState() -> PlayerState:
 	
 	if state == PlayerState.bodied:
 		if velocity.x == 0 and velocity.z == 0:
-			return PlayerState.idle
+			return PlayerState.idle	
+		return PlayerState.bodied
 	
 	if Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") != Vector2.ZERO:
 		if Input.is_action_pressed("run"):
@@ -91,30 +92,30 @@ func moodShift(direction: int):
 	emit_signal("mood_shift", direction)
 
 func idle(delta):
-	animationPlayer.play("idle")
+	animationTree.set("parameters/movements/transition_request", "Idle")
 	applyInput(delta)
 
 func walk(delta):
-	animationPlayer.play("walk")
+	animationTree.set("parameters/movements/transition_request", "Walk")
 	applyInput(delta)
 
 func run(delta):
-	animationPlayer.play("run")
+	animationTree.set("parameters/movements/transition_request", "Run")
 	applyInput(delta)
 
 func jump(delta):
-	animationPlayer.play("jump")
+	animationTree.set("parameters/movements/transition_request", "Jump")
 	applyInput(delta)
 
 func bodied(delta):
-	animationPlayer.play("barged")
+	animationTree.set("parameters/movements/transition_request", "Bodied")
 	velocity.x = move_toward(velocity.x, 0, deceleration * 60 * delta)
 	velocity.z = move_toward(velocity.z, 0, deceleration * 60 * delta)
 	
 	move_and_slide()
 
 func fainted(delta):
-	animationPlayer.play("faint")
+	animationTree.set("parameters/movements/transition_request", "Faint")
 	velocity.x = move_toward(velocity.x, 0, deceleration * 60 * delta)
 	velocity.z = move_toward(velocity.z, 0, deceleration * 60 * delta)
 	
