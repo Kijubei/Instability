@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://6hsj3wthrjgx"]
+[gd_scene load_steps=21 format=3 uid="uid://6hsj3wthrjgx"]
 
 [ext_resource type="Script" path="res://demo_level.gd" id="1_kuyee"]
 [ext_resource type="PackedScene" uid="uid://bgestv6y0v5os" path="res://scenes/Effects/game_over_line.tscn" id="3_3o20l"]
@@ -17,6 +17,27 @@
 [ext_resource type="PackedScene" uid="uid://cfsclil84sjri" path="res://scenes/buildings/Building1/Building1_06.tscn" id="11_hquvk"]
 [ext_resource type="PackedScene" uid="uid://dy887ptpld1fn" path="res://scenes/buildings/Building1/Building1_07.tscn" id="12_5khlq"]
 [ext_resource type="PackedScene" uid="uid://cva5v88cmx5ix" path="res://scenes/buildings/Building1/Building1_08.tscn" id="16_hfxis"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m4gux"]
+
+[sub_resource type="Sky" id="Sky_qjfen"]
+sky_material = SubResource("ProceduralSkyMaterial_m4gux")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_1x7b2"]
+background_mode = 2
+sky = SubResource("Sky_qjfen")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.8
+reflected_light_source = 2
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 2.5
+ssil_enabled = true
+sdfgi_enabled = true
+volumetric_fog_density = 0.07
+volumetric_fog_length = 95.0
+volumetric_fog_ambient_inject = 1.15
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_kuyee")
@@ -265,6 +286,9 @@ transform = Transform3D(0.2, 0, 0, 0, 0.178201, -0.0907981, 0, 0.0907981, 0.1782
 
 [node name="Pill3" parent="Objekte/Items" instance=ExtResource("7_mwxyp")]
 transform = Transform3D(0.2, 0, 0, 0, 0.178201, -0.0907981, 0, 0.0907981, 0.178201, -7.46372, 5.18239, -32.0405)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1x7b2")
 
 [connection signal="getBodiedFromPeople" from="Objekte/Leute" to="UnstablePlayer" method="_on_leute_get_bodied_from_people"]
 [connection signal="getBodiedFromGroup" from="Objekte/Leute/FußgängerGruppe" to="Objekte/Leute" method="_on_fugnger_gruppe_get_bodied_from_group"]
