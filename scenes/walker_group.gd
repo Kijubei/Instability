@@ -1,32 +1,44 @@
-extends CharacterBody3D
+@tool
+extends Node3D
 
 @export_category("Customization")
-@export var moveSpeed = 3
+@export var moveSpeed = 10
 @export var groupBumpPower = 50
+@export var walkerAmount = 3:
+	set(value):
+		walkerAmount = value
+		if Engine.is_editor_hint():
+			updateWalker()
 
-@onready var walker1 = $"Walker"
-@onready var walker2 = $"Walker2"
-@onready var walker3 = $"Walker3"
+@export var walkerWidth = 1.5
 
 signal getBodiedFromGroup(bumpPower, directionNormalized)
 
-# Called when the node enters the scene tree for the first time.
+var walkerArray = []
+var walkerScene = preload("res://scenes/walker.tscn")
+
 func _ready():
-	walker1.bumpPower = groupBumpPower
-	walker2.bumpPower = groupBumpPower
-	walker3.bumpPower = groupBumpPower
+	addAllWalker()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	velocity.z = moveSpeed
-	self.move_and_slide()
+func updateWalker():
+	removeAllWalker()
+	addAllWalker()
 
+func removeAllWalker():
+	for walker in walkerArray:
+		walker.queue_free()
+	walkerArray = []
 
-func _on_walker_get_bodied(bumpPower, directionNormalized):
-	emit_signal("getBodiedFromGroup", bumpPower, directionNormalized)
+func addAllWalker():
+	for x in walkerAmount:
+		var walker = walkerScene.instantiate()
+		add_child(walker)
+		walker.transform.origin.x = walkerPosition(x+1)
+		walker.bumpPower = groupBumpPower
+		walker.moveSpeed = moveSpeed
+		walkerArray.append(walker)
 
-func _on_walker_2_get_bodied(bumpPower, directionNormalized):
-	emit_signal("getBodiedFromGroup", bumpPower, directionNormalized)
-
-func _on_walker_3_get_bodied(bumpPower, directionNormalized):
-	emit_signal("getBodiedFromGroup", bumpPower, directionNormalized)
+func walkerPosition(forX) -> float:
+	var equalizer = (walkerWidth * walkerAmount) / 2
+	var absolutePosX = forX * walkerWidth
+	return absolutePosX - equalizer

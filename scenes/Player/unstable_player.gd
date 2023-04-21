@@ -148,6 +148,11 @@ func _on_leute_get_bodied_from_people(bumpPower, directionNormalized):
 		state = PlayerState.bodied
 	velocity = velocity.move_toward(directionNormalized * bumpPower, bumpPower)
 
+func getBodied(bumpPower, directionNormalized):
+	if state != PlayerState.fainted:
+		state = PlayerState.bodied
+	velocity = velocity.move_toward(directionNormalized * bumpPower, bumpPower)
+
 func gainPill():
 	if pillUI.pills < pillUI.max_pills:
 		pillUI.setPills(pillUI.pills+1)

@@ -1,20 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://boxf62wmawto"]
+[gd_scene load_steps=2 format=3 uid="uid://boxf62wmawto"]
 
 [ext_resource type="Script" path="res://scenes/walker_group.gd" id="1_rklw6"]
-[ext_resource type="PackedScene" uid="uid://dwvu5ydu8jb1u" path="res://scenes/walker.tscn" id="2_g6udk"]
 
-[node name="WalkerGroup" type="CharacterBody3D"]
+[node name="WalkerGroup" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_rklw6")
-
-[node name="Walker" parent="." instance=ExtResource("2_g6udk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="Walker2" parent="." instance=ExtResource("2_g6udk")]
-
-[node name="Walker3" parent="." instance=ExtResource("2_g6udk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-
-[connection signal="getBodied" from="Walker" to="." method="_on_walker_get_bodied"]
-[connection signal="getBodied" from="Walker2" to="." method="_on_walker_2_get_bodied"]
-[connection signal="getBodied" from="Walker3" to="." method="_on_walker_3_get_bodied"]
