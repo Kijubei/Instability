@@ -10,7 +10,6 @@ extends CharacterBody3D
 
 func _process(delta):
 	velocity.z = moveSpeed * delta * 60
-	print(velocity.z)
 	
 	if velocity.z != 0 or velocity.x != 0:
 		animationTree.set("parameters/movements/transition_request", "Walk")
