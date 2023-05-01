@@ -55,7 +55,6 @@ process_material = SubResource("ParticleProcessMaterial_njwil")
 draw_pass_1 = SubResource("PointMesh_xk4lg")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-visible = false
 light_color = Color(1, 0.87451, 0.258824, 1)
 light_energy = 1.5
 omni_range = 2.0
