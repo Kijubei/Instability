@@ -8,10 +8,11 @@ extends CharacterBody3D
 
 @onready var animationTree: AnimationTree = $"animations-treadmill/AnimationTree"
 
-var active = false
+func _ready():
+	self.visible = false
 
 func _process(delta):
-	if active:
+	if self.visible:
 		move(delta)
 
 func move(delta):
@@ -31,9 +32,9 @@ func _on_bump_area_body_entered(body):
 
 func _on_activation_area_body_entered(body):
 	if body is UnstablePlayer:
-		active = true
+		visible = true
 
 func _on_activation_area_body_exited(body):
 	if body is UnstablePlayer:
-		active = false
+		visible = false
 		self.queue_free()
