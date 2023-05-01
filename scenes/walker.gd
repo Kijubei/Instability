@@ -8,7 +8,14 @@ extends CharacterBody3D
 
 @onready var animationTree: AnimationTree = $"animations-treadmill/AnimationTree"
 
+func _ready():
+	self.visible = false
+
 func _process(delta):
+	if self.visible:
+		move(delta)
+
+func move(delta):
 	velocity.z = moveSpeed * delta * 60
 	
 	if velocity.z != 0 or velocity.x != 0:
@@ -18,8 +25,16 @@ func _process(delta):
 	
 	move_and_slide()
 
-func _on_area_3d_body_entered(body):
+func _on_bump_area_body_entered(body):
 	if body is UnstablePlayer:
 		var directionNormalized = (self.position - body.position).normalized()
 		body.getBodied(bumpPower, directionNormalized)
-	
+
+func _on_activation_area_body_entered(body):
+	if body is UnstablePlayer:
+		visible = true
+
+func _on_activation_area_body_exited(body):
+	if body is UnstablePlayer:
+		visible = false
+		self.queue_free()

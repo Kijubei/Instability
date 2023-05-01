@@ -3,27 +3,22 @@
 [ext_resource type="Script" path="res://scenes/walker.gd" id="1_hq78r"]
 [ext_resource type="PackedScene" uid="uid://ds4026u0366rt" path="res://scenes/Player/player_animations_treadmill.tscn" id="2_8bg33"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_udtar"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p2w4y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oects"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_3nqk6"]
+
 [node name="Walker" type="CharacterBody3D"]
 script = ExtResource("1_hq78r")
-
-[node name="Mesh3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_udtar")
-skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_p2w4y")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="BumpArea" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpArea"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("SphereShape3D_oects")
 
@@ -31,22 +26,31 @@ shape = SubResource("SphereShape3D_oects")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="animations-treadmill/control_rig" index="0"]
-bones/0/position = Vector3(-0.00240142, 0.884761, -0.0379552)
-bones/0/rotation = Quaternion(0.114868, 0.0186195, -0.00215339, 0.993204)
-bones/4/rotation = Quaternion(0.516925, 0.0690987, 0.00413611, 0.853228)
-bones/5/rotation = Quaternion(-0.388961, -0.0433827, 0.00284485, 0.920228)
-bones/7/rotation = Quaternion(-0.608402, 0.0856437, -0.0981763, 0.782863)
-bones/8/rotation = Quaternion(2.50529e-07, 0.00105568, -7.70993e-08, 1)
-bones/32/rotation = Quaternion(-0.609089, -0.0800621, 0.117418, 0.780265)
-bones/33/rotation = Quaternion(2.67685e-07, 0.00643906, 5.24304e-08, 0.999979)
-bones/56/rotation = Quaternion(-0.00221983, 0.0953295, 0.995369, -0.0122058)
-bones/57/rotation = Quaternion(-2.31697e-10, -0.0834335, 1.32298e-08, 0.996513)
-bones/58/rotation = Quaternion(-0.0388238, 0.0102083, 0.0100827, 0.999143)
-bones/60/rotation = Quaternion(0.548716, -0.00641314, -0.023891, 0.835643)
-bones/62/rotation = Quaternion(-0.0174691, 0.13529, 0.99052, 0.0161561)
-bones/63/rotation = Quaternion(1.65227e-09, 0.10031, -2.0313e-08, 0.994956)
-bones/66/rotation = Quaternion(0.521718, 0.00681464, 0.0229165, 0.852783)
+bones/0/position = Vector3(0.00111104, 0.884761, -0.0381023)
+bones/0/rotation = Quaternion(0.114884, -0.00857074, 0.000991267, 0.993341)
+bones/4/rotation = Quaternion(0.51806, 0.0203255, 0.00121664, 0.855102)
+bones/5/rotation = Quaternion(-0.389215, -0.00632579, -0.00222111, 0.921122)
+bones/7/rotation = Quaternion(-0.609173, 0.0780859, -0.124155, 0.779356)
+bones/8/rotation = Quaternion(2.98857e-07, -0.0090645, -4.47963e-08, 0.999959)
+bones/32/rotation = Quaternion(-0.608659, -0.0841425, 0.103383, 0.782155)
+bones/33/rotation = Quaternion(3.39679e-07, 0.000973023, 6.62192e-08, 1)
+bones/56/rotation = Quaternion(0.0111207, 0.0914674, 0.995706, -0.00887274)
+bones/57/rotation = Quaternion(-1.10569e-08, -0.0970347, 1.28135e-08, 0.995281)
+bones/58/rotation = Quaternion(-0.0374367, 0.0102223, 0.0100685, 0.999196)
+bones/60/rotation = Quaternion(0.550493, -0.00638682, -0.0235006, 0.834484)
+bones/62/rotation = Quaternion(-0.00387724, 0.138754, 0.990163, 0.0175788)
+bones/63/rotation = Quaternion(-4.57088e-09, 0.0867107, -1.45258e-08, 0.996234)
+bones/66/rotation = Quaternion(0.519151, 0.00687385, 0.0232101, 0.85434)
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="ActivationArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ActivationArea"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("SphereShape3D_3nqk6")
+
+[connection signal="body_entered" from="BumpArea" to="." method="_on_bump_area_body_entered"]
+[connection signal="body_entered" from="BumpArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]
+[connection signal="body_exited" from="ActivationArea" to="." method="_on_activation_area_body_exited"]
 
 [editable path="animations-treadmill"]
