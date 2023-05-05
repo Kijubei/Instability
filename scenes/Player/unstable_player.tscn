@@ -53,26 +53,28 @@ stretch_mode = 1
 [node name="animations-treadmill" parent="." instance=ExtResource("6_5sr2h")]
 
 [node name="Skeleton3D" parent="animations-treadmill/control_rig" index="0"]
-bones/0/position = Vector3(0.00185512, 0.884761, -0.0381334)
-bones/0/rotation = Quaternion(0.114876, -0.0143306, 0.00165742, 0.993275)
-bones/4/rotation = Quaternion(0.518142, 0.00998311, 0.00059757, 0.855236)
-bones/5/rotation = Quaternion(-0.389199, 0.00152728, -0.00329413, 0.921147)
+bones/0/position = Vector3(-0.0079037, 0.884761, -0.0376292)
+bones/0/rotation = Quaternion(0.114669, 0.0612574, -0.00708463, 0.991488)
+bones/4/rotation = Quaternion(0.518163, -0.00424982, -0.00025438, 0.855271)
+bones/5/rotation = Quaternion(-0.38896, -0.0259119, 0.0134185, 0.920793)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/scale = Vector3(0.999999, 1, 0.999999)
-bones/7/rotation = Quaternion(-0.609248, 0.0764732, -0.12965, 0.778562)
-bones/8/rotation = Quaternion(3.2496e-07, -0.011208, -4.08636e-08, 0.999937)
-bones/32/rotation = Quaternion(-0.608533, -0.0850021, 0.100409, 0.782548)
-bones/33/rotation = Quaternion(2.64706e-07, -0.000184845, 7.22934e-08, 1)
-bones/56/rotation = Quaternion(0.013939, 0.0906609, 0.995751, -0.00814552)
-bones/57/rotation = Quaternion(-8.65699e-09, -0.0999212, 1.89353e-08, 0.994995)
-bones/58/rotation = Quaternion(-0.0371314, 0.0102254, 0.0100654, 0.999207)
-bones/60/rotation = Quaternion(0.550871, -0.00638152, -0.0234431, 0.834236)
-bones/62/rotation = Quaternion(-0.00100052, 0.139474, 0.990064, 0.0178646)
-bones/63/rotation = Quaternion(-6.8495e-09, 0.0838415, -5.13929e-09, 0.996479)
-bones/66/rotation = Quaternion(0.5186, 0.00688804, 0.0232983, 0.854672)
+bones/7/rotation = Quaternion(-0.60914, 0.0783674, -0.123188, 0.779507)
+bones/8/rotation = Quaternion(3.36909e-07, -0.00868579, -6.72053e-08, 0.999962)
+bones/32/rotation = Quaternion(-0.607567, -0.0899841, 0.0830612, 0.784772)
+bones/33/rotation = Quaternion(3.36511e-07, -0.0069362, 8.80133e-08, 0.999976)
+bones/56/rotation = Quaternion(-0.0231875, 0.101324, 0.994435, -0.0171694)
+bones/57/rotation = Quaternion(-9.30737e-09, -0.0622184, 8.42582e-09, 0.998063)
+bones/58/rotation = Quaternion(-0.0406875, 0.0101895, 0.0101017, 0.999069)
+bones/60/rotation = Quaternion(0.545821, -0.00646572, -0.0248569, 0.837508)
+bones/62/rotation = Quaternion(-0.0387673, 0.129665, 0.990705, 0.0136898)
+bones/63/rotation = Quaternion(1.30276e-09, 0.121756, -3.30768e-08, 0.99256)
+bones/66/rotation = Quaternion(0.525628, 0.00674173, 0.0228077, 0.850382)
 
 [connection signal="mood_shift" from="." to="MoodShift" method="_on_unstable_player_mood_shift"]
+[connection signal="complete" from="MoodShift" to="." method="_on_mood_shift_complete"]
 [connection signal="complete" from="MoodShift" to="Instability" method="_on_mood_shift_complete"]
+[connection signal="started" from="MoodShift" to="." method="_on_mood_shift_started"]
 [connection signal="started" from="MoodShift" to="Instability" method="_on_mood_shift_started"]
 [connection signal="started" from="MoodShift" to="PillUI" method="_on_mood_shift_started"]
 

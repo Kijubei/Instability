@@ -11,6 +11,7 @@ enum PlayerState {
 	jump,
 	bodied,
 	fainted,
+	floating,
 }
 
 const hLookSensibility = 0.2
@@ -24,6 +25,7 @@ const vLookSensibility = 0.2
 @export var air_control = 0.3
 @export var jump_height = 10
 @export var run_speed_multiplier = 1.6
+@export var floating_height = 5
 
 var state: int = PlayerState.idle
 
@@ -39,12 +41,12 @@ func _input(event):
 		rotation_degrees.y -= event.relative.x * hLookSensibility
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	
 	state = getCurrentState()
 	checkActions()
+	
+	# Add the gravity.
+	if not is_on_floor() and state != PlayerState.floating:
+		velocity.y -= gravity * delta
 	
 	match state:
 		PlayerState.idle:
@@ -59,11 +61,16 @@ func _physics_process(delta):
 			bodied(delta)
 		PlayerState.fainted:
 			fainted(delta)
+		PlayerState.floating:
+			floating(delta)
 	
 
 func getCurrentState() -> PlayerState:
 	if state == PlayerState.fainted:
 		return PlayerState.fainted
+	
+	if state == PlayerState.floating:
+		return PlayerState.floating
 	
 	if not is_on_floor():
 		return PlayerState.jump
@@ -90,6 +97,12 @@ func checkActions():
 
 func moodShift(direction: int):
 	emit_signal("mood_shift", direction)
+
+func _on_mood_shift_started():
+	state = PlayerState.floating
+
+func _on_mood_shift_complete(directionMultiplier):
+	state = PlayerState.jump
 
 func idle(delta):
 	animationTree.set("parameters/movements/transition_request", "Idle")
@@ -120,6 +133,12 @@ func fainted(delta):
 	velocity.z = move_toward(velocity.z, 0, deceleration * 60 * delta)
 	
 	move_and_slide()
+	
+func floating(delta):
+	animationTree.set("parameters/movements/transition_request", "Use")
+	# Float a bit in the air
+	velocity.y = floating_height
+	applyInput(delta)
 
 func applyInput(delta):
 	var maxSpeed = speed * run_speed_multiplier if state == PlayerState.run else speed
@@ -142,11 +161,6 @@ func applyInput(delta):
 		
 	
 	move_and_slide()
-
-func _on_leute_get_bodied_from_people(bumpPower, directionNormalized):
-	if state != PlayerState.fainted:
-		state = PlayerState.bodied
-	velocity = velocity.move_toward(directionNormalized * bumpPower, bumpPower)
 
 func getBodied(bumpPower, directionNormalized):
 	if state != PlayerState.fainted:
