@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cffnofqm32t27"]
+[gd_scene load_steps=11 format=3 uid="uid://cffnofqm32t27"]
 
 [ext_resource type="Script" path="res://scenes/Player/unstable_player.gd" id="1_u53lj"]
 [ext_resource type="PackedScene" uid="uid://fa02u5be3vwq" path="res://scenes/Player/Skills/instability.tscn" id="2_n0n8u"]
@@ -6,8 +6,30 @@
 [ext_resource type="Script" path="res://scenes/Player/PillUI.gd" id="4_37ban"]
 [ext_resource type="Texture2D" uid="uid://cuktcsiub5ef0" path="res://assets/Icons/pill.png" id="4_hv7q4"]
 [ext_resource type="PackedScene" uid="uid://ds4026u0366rt" path="res://scenes/Player/player_animations_treadmill.tscn" id="6_5sr2h"]
+[ext_resource type="Script" path="res://scenes/Player/PillCharger.gd" id="6_sakhi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bberf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wjkd"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0823529, 0, 0.00784314, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dv2of"]
+bg_color = Color(0.733333, 0.478431, 0.85098, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 4
 
 [node name="UnstablePlayer" type="CharacterBody3D" groups=["player"]]
 collision_layer = 3
@@ -50,26 +72,37 @@ texture = ExtResource("4_hv7q4")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="PillCharger" type="ProgressBar" parent="PillUI"]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 25.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8wjkd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dv2of")
+step = 0.025
+show_percentage = false
+script = ExtResource("6_sakhi")
+
 [node name="animations-treadmill" parent="." instance=ExtResource("6_5sr2h")]
 
 [node name="Skeleton3D" parent="animations-treadmill/control_rig" index="0"]
-bones/0/position = Vector3(-0.0079037, 0.884761, -0.0376292)
-bones/0/rotation = Quaternion(0.114669, 0.0612574, -0.00708463, 0.991488)
-bones/4/rotation = Quaternion(0.518163, -0.00424982, -0.00025438, 0.855271)
-bones/5/rotation = Quaternion(-0.38896, -0.0259119, 0.0134185, 0.920793)
+bones/0/position = Vector3(0.000516628, 0.884761, -0.0381559)
+bones/0/rotation = Quaternion(0.114887, -0.00396784, 0.000458924, 0.993371)
+bones/4/rotation = Quaternion(0.517758, -0.0397064, -0.00237674, 0.854602)
+bones/5/rotation = Quaternion(-0.388916, 0.0218391, -0.000180334, 0.921014)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/scale = Vector3(0.999999, 1, 0.999999)
-bones/7/rotation = Quaternion(-0.60914, 0.0783674, -0.123188, 0.779507)
-bones/8/rotation = Quaternion(3.36909e-07, -0.00868579, -6.72053e-08, 0.999962)
-bones/32/rotation = Quaternion(-0.607567, -0.0899841, 0.0830612, 0.784772)
-bones/33/rotation = Quaternion(3.36511e-07, -0.0069362, 8.80133e-08, 0.999976)
-bones/56/rotation = Quaternion(-0.0231875, 0.101324, 0.994435, -0.0171694)
-bones/57/rotation = Quaternion(-9.30737e-09, -0.0622184, 8.42582e-09, 0.998063)
-bones/58/rotation = Quaternion(-0.0406875, 0.0101895, 0.0101017, 0.999069)
-bones/60/rotation = Quaternion(0.545821, -0.00646572, -0.0248569, 0.837508)
-bones/62/rotation = Quaternion(-0.0387673, 0.129665, 0.990705, 0.0136898)
-bones/63/rotation = Quaternion(1.30276e-09, 0.121756, -3.30768e-08, 0.99256)
-bones/66/rotation = Quaternion(0.525628, 0.00674173, 0.0228077, 0.850382)
+bones/7/rotation = Quaternion(-0.609239, 0.072082, -0.144501, 0.776371)
+bones/8/rotation = Quaternion(2.80846e-07, -0.0170061, -3.87234e-08, 0.999855)
+bones/32/rotation = Quaternion(-0.606866, -0.092201, 0.0752489, 0.785844)
+bones/33/rotation = Quaternion(3.02098e-07, -0.00998352, 1.03608e-07, 0.99995)
+bones/56/rotation = Quaternion(0.00885999, 0.092128, 0.995663, -0.00943961)
+bones/57/rotation = Quaternion(-2.09777e-09, -0.0947273, 1.24495e-08, 0.995503)
+bones/58/rotation = Quaternion(-0.0377364, 0.0102193, 0.0100716, 0.999185)
+bones/60/rotation = Quaternion(0.550193, -0.00639098, -0.0235509, 0.834681)
+bones/62/rotation = Quaternion(-0.00618017, 0.138172, 0.990237, 0.017342)
+bones/63/rotation = Quaternion(-6.74308e-09, 0.0890077, -1.04239e-08, 0.996031)
+bones/66/rotation = Quaternion(0.519588, 0.00686326, 0.0231514, 0.854075)
 
 [connection signal="mood_shift" from="." to="MoodShift" method="_on_unstable_player_mood_shift"]
 [connection signal="complete" from="MoodShift" to="." method="_on_mood_shift_complete"]
@@ -77,5 +110,6 @@ bones/66/rotation = Quaternion(0.525628, 0.00674173, 0.0228077, 0.850382)
 [connection signal="started" from="MoodShift" to="." method="_on_mood_shift_started"]
 [connection signal="started" from="MoodShift" to="Instability" method="_on_mood_shift_started"]
 [connection signal="started" from="MoodShift" to="PillUI" method="_on_mood_shift_started"]
+[connection signal="charged" from="PillUI/PillCharger" to="PillUI" method="_on_pill_charger_charged"]
 
 [editable path="animations-treadmill"]

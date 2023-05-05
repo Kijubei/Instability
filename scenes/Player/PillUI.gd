@@ -17,3 +17,6 @@ func setPills(value):
 
 func _on_mood_shift_started():
 	setPills(pills-1)
+
+func _on_pill_charger_charged():
+	setPills(pills+1)
