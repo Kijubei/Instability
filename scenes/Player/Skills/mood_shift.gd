@@ -14,13 +14,10 @@ signal complete(directionMultiplier: int)
 @onready var tween: Tween = create_tween()
 
 func _ready():
-	if not world:
-		push_error("world not initialized for mood_shift")
-		get_tree().quit()
-		return
-		
-	tween.pause()
+	assert(world, "world not initialized for mood_shift")
 	
+	tween.pause()
+
 func shift(directionMultiplier: int):
 	
 	# Ich weiß nicht warum der hier immer wieder erstellt werden muss

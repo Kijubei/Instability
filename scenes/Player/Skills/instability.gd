@@ -9,9 +9,7 @@ extends Node3D
 var tween: Tween
 
 func _ready():
-	if not world:
-		push_error("world not initialized for instability")
-		get_tree().quit()
+	assert(world, "world not initialized for instability(skill)")
 	turnWorld(randomDirection())
 
 

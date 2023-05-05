@@ -40,29 +40,13 @@ func _input(event):
 		cameraBase.rotation_degrees.x = clamp(cameraBase.rotation_degrees.x, -90, 90)
 		rotation_degrees.y -= event.relative.x * hLookSensibility
 
+#
+
 func _physics_process(delta):
 	state = getCurrentState()
 	checkActions()
-	
-	# Add the gravity.
-	if not is_on_floor() and state != PlayerState.floating:
-		velocity.y -= gravity * delta
-	
-	match state:
-		PlayerState.idle:
-			idle(delta)
-		PlayerState.walk:
-			walk(delta)
-		PlayerState.run:
-			run(delta)
-		PlayerState.jump:
-			jump(delta)
-		PlayerState.bodied:
-			bodied(delta)
-		PlayerState.fainted:
-			fainted(delta)
-		PlayerState.floating:
-			floating(delta)
+	applyGravity(delta)
+	applyState(delta)
 	
 
 func getCurrentState() -> PlayerState:
@@ -94,6 +78,27 @@ func checkActions():
 
 		if Input.is_action_just_released("mood_shift_right"):
 			moodShift(-1)
+
+func applyGravity(delta):
+	if not is_on_floor() and state != PlayerState.floating:
+		velocity.y -= gravity * delta
+
+func applyState(delta):
+	match state:
+		PlayerState.idle:
+			idle(delta)
+		PlayerState.walk:
+			walk(delta)
+		PlayerState.run:
+			run(delta)
+		PlayerState.jump:
+			jump(delta)
+		PlayerState.bodied:
+			bodied(delta)
+		PlayerState.fainted:
+			fainted(delta)
+		PlayerState.floating:
+			floating(delta)
 
 func moodShift(direction: int):
 	emit_signal("mood_shift", direction)
