@@ -8,11 +8,12 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.size.x = max_pills * pillImg.texture.get_width()
+	#self.size.x = max_pills * pillImg.texture.get_width()
 	pillImg.size.x = pills * pillImg.texture.get_width()
 
 func setPills(value):
-	pills = clamp(value, 0, max_pills)
+	value = clamp(value, 0, max_pills)
+	pills = value
 	pillImg.size.x = value * pillImg.texture.get_width()
 
 func _on_mood_shift_started():
