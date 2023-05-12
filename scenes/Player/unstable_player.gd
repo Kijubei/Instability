@@ -72,7 +72,7 @@ func getCurrentState() -> PlayerState:
 	return PlayerState.idle
 
 func checkActions():
-	if pillUI.pills > 0:
+	if pillUI.pills > 0 and state != PlayerState.fainted and state != PlayerState.bodied:
 		if Input.is_action_just_released("mood_shift_left"):
 			moodShift(1)
 
@@ -107,7 +107,8 @@ func _on_mood_shift_started():
 	state = PlayerState.floating
 
 func _on_mood_shift_complete(directionMultiplier):
-	state = PlayerState.jump
+	if state != PlayerState.fainted and state != PlayerState.bodied:
+		state = PlayerState.jump
 
 func idle(delta):
 	animationTree.set("parameters/movements/transition_request", "Idle")
