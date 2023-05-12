@@ -144,8 +144,6 @@ func floating(delta):
 	applyInput(delta)
 
 func applyInput(delta):
-	#var maxSpeed = speed * run_speed_multiplier if state == PlayerState.run else speed
-	
 	var maxSpeed = speed
 	if Input.is_action_pressed("run") and energy.value > energy.min_value:
 		energy.useToRun()
