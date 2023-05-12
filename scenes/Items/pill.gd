@@ -8,6 +8,5 @@ func _process(_delta):
 
 func _on_area_3d_body_entered(body):
 	if body is UnstablePlayer:
-		if body.pillUI.pills < body.pillUI.max_pills:
-			body.gainPill()
-			queue_free()
+		body.gainPill()
+		queue_free()

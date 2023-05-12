@@ -1,3 +1,4 @@
+class_name MoodShift
 extends Node3D
 
 signal started
@@ -18,7 +19,12 @@ func _ready():
 	
 	tween.pause()
 
-func shift(directionMultiplier: int):
+func shift(directionMultiplier):
+	if is_shift_possible(directionMultiplier) and not tween.is_running():
+		emit_signal("started")
+		shiftWorld(directionMultiplier)
+
+func shiftWorld(directionMultiplier: int):
 	
 	# Ich weiß nicht warum der hier immer wieder erstellt werden muss
 	tween = create_tween()
@@ -39,11 +45,6 @@ func is_shift_possible(directionMultiplier: int) -> bool:
 
 func variance() -> int:
 	return randi_range(rotationVarianceMin, rotationVarianceMax)
-
-func _on_unstable_player_mood_shift(directionMultiplier):
-	if is_shift_possible(directionMultiplier) and not tween.is_running():
-		emit_signal("started")
-		shift(directionMultiplier)
 
 func moodShiftDone(directionMultiplier: int):
 	tween.pause()

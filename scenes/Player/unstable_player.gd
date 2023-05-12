@@ -30,6 +30,8 @@ const vLookSensibility = 0.2
 var state: int = PlayerState.idle
 
 @onready var pillUI: PillUI = $PillUI
+@onready var energy: PlayerEnergy = $EnergyUI/PlayerEnergy
+@onready var moodShift: MoodShift = $MoodShift
 @onready var cameraBase = $CameraBase
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier)
 @onready var animationTree: AnimationTree = $"animations-treadmill/AnimationTree"
@@ -39,8 +41,6 @@ func _input(event):
 		cameraBase.rotation_degrees.x -= event.relative.y * vLookSensibility
 		cameraBase.rotation_degrees.x = clamp(cameraBase.rotation_degrees.x, -90, 90)
 		rotation_degrees.y -= event.relative.x * hLookSensibility
-
-#
 
 func _physics_process(delta):
 	state = getCurrentState()
@@ -65,7 +65,7 @@ func getCurrentState() -> PlayerState:
 		return PlayerState.bodied
 	
 	if Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") != Vector2.ZERO:
-		if Input.is_action_pressed("run"):
+		if Input.is_action_pressed("run") and energy.value > energy.min_value:
 			return PlayerState.run
 		return PlayerState.walk
 	
@@ -74,10 +74,10 @@ func getCurrentState() -> PlayerState:
 func checkActions():
 	if pillUI.pills > 0 and state != PlayerState.fainted and state != PlayerState.bodied:
 		if Input.is_action_just_released("mood_shift_left"):
-			moodShift(1)
+			moodShift.shift(1)
 
 		if Input.is_action_just_released("mood_shift_right"):
-			moodShift(-1)
+			moodShift.shift(-1)
 
 func applyGravity(delta):
 	if not is_on_floor() and state != PlayerState.floating:
@@ -99,9 +99,6 @@ func applyState(delta):
 			fainted(delta)
 		PlayerState.floating:
 			floating(delta)
-
-func moodShift(direction: int):
-	emit_signal("mood_shift", direction)
 
 func _on_mood_shift_started():
 	state = PlayerState.floating
@@ -147,7 +144,14 @@ func floating(delta):
 	applyInput(delta)
 
 func applyInput(delta):
-	var maxSpeed = speed * run_speed_multiplier if state == PlayerState.run else speed
+	#var maxSpeed = speed * run_speed_multiplier if state == PlayerState.run else speed
+	
+	var maxSpeed = speed
+	if Input.is_action_pressed("run") and energy.value > energy.min_value:
+		energy.useToRun()
+		maxSpeed *= run_speed_multiplier
+	else:
+		energy.recover()
 	
 	# Handle Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -176,6 +180,7 @@ func getBodied(bumpPower, directionNormalized):
 func gainPill():
 	if pillUI.pills < pillUI.max_pills:
 		pillUI.setPills(pillUI.pills+1)
+	energy.boostEnergy()
 
 func faint():
 	state = PlayerState.fainted
