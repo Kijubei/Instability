@@ -2,7 +2,7 @@ extends ProgressBar
 
 signal charged
 
-func _process(delta):
+func _process(_delta):
 	value += step
 	
 	if value == max_value:

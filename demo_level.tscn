@@ -39,7 +39,7 @@ volumetric_fog_density = 0.07
 volumetric_fog_length = 95.0
 volumetric_fog_ambient_inject = 1.15
 
-[node name="Node3D" type="Node3D"]
+[node name="Level" type="Node3D"]
 script = ExtResource("1_kuyee")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -58,57 +58,23 @@ roationMultiplier = 4
 world = NodePath("../../Objekte")
 
 [node name="Skeleton3D" parent="UnstablePlayer/animations-treadmill/control_rig" index="0"]
-bones/0/position = Vector3(-0.00924325, 0.884761, -0.0375463)
-bones/0/rotation = Quaternion(0.114589, 0.0716546, -0.00828711, 0.990791)
-bones/2/rotation = Quaternion(-0.177363, -2.34639e-07, -4.43901e-15, 0.984146)
-bones/4/rotation = Quaternion(0.518094, 0.0169044, 0.00101187, 0.855156)
-bones/5/rotation = Quaternion(-0.38886, -0.0413375, 0.0153174, 0.920241)
+bones/0/position = Vector3(0.00118921, 0.884761, -0.038198)
+bones/0/rotation = Quaternion(0.114883, -0.00918075, 0.00106182, 0.993336)
+bones/4/rotation = Quaternion(0.517982, -0.0267116, -0.0015989, 0.854973)
+bones/5/rotation = Quaternion(-0.389023, 0.0176714, -0.00153842, 0.921057)
 bones/5/scale = Vector3(1, 0.999999, 1)
-bones/6/rotation = Quaternion(-0.521268, -0.406551, -0.46145, 0.591659)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.608975, 0.0807557, -0.115019, 0.78064)
-bones/8/rotation = Quaternion(2.20932e-07, -0.00550168, -6.19066e-08, 0.999985)
-bones/9/rotation = Quaternion(-0.0540227, -0.00844826, -0.0641852, 0.996439)
-bones/11/rotation = Quaternion(-0.040312, -4.62502e-07, 0.000163656, 0.999187)
-bones/13/rotation = Quaternion(-0.138434, -8.54903e-08, -1.02466e-08, 0.990372)
-bones/14/rotation = Quaternion(-0.141784, 8.85038e-08, 8.45099e-09, 0.989898)
-bones/15/rotation = Quaternion(-0.177627, 3.07012e-07, -1.28984e-07, 0.984098)
-bones/18/rotation = Quaternion(-0.141772, -0.00275362, 0.00188987, 0.989894)
-bones/19/rotation = Quaternion(-0.177596, -0.0025118, 0.00331495, 0.984095)
-bones/21/rotation = Quaternion(-0.138426, -0.00440985, 0.00146298, 0.990362)
-bones/28/rotation = Quaternion(-0.138434, -8.75531e-08, 4.51108e-09, 0.990372)
-bones/29/rotation = Quaternion(-0.141784, 8.85038e-08, 8.45099e-09, 0.989898)
-bones/31/rotation = Quaternion(-0.530516, 0.394407, 0.447666, 0.602155)
-bones/32/rotation = Quaternion(-0.608114, -0.0874116, 0.0920421, 0.783635)
-bones/33/rotation = Quaternion(3.56384e-07, -0.00344149, 6.96738e-08, 0.999994)
-bones/34/rotation = Quaternion(-0.0540227, 0.00844826, 0.0641852, 0.996439)
-bones/36/rotation = Quaternion(-0.040312, 4.62429e-07, -0.00016366, 0.999187)
-bones/38/rotation = Quaternion(-0.138434, 8.75934e-08, -4.79932e-09, 0.990372)
-bones/39/rotation = Quaternion(-0.141784, -8.85038e-08, -8.45098e-09, 0.989898)
-bones/40/rotation = Quaternion(-0.177627, -1.67702e-07, 1.03839e-07, 0.984098)
-bones/42/rotation = Quaternion(-0.138434, 8.65681e-08, 2.5363e-09, 0.990372)
-bones/43/rotation = Quaternion(-0.141784, -8.85038e-08, -8.45098e-09, 0.989898)
-bones/44/rotation = Quaternion(-0.177627, -3.07012e-07, 1.28984e-07, 0.984098)
-bones/48/rotation = Quaternion(-0.177596, 0.0025118, -0.00331495, 0.984095)
-bones/51/rotation = Quaternion(-0.141759, 0.0039211, -0.00269113, 0.98989)
-bones/56/rotation = Quaternion(-0.0283006, 0.102772, 0.994133, -0.0183271)
-bones/56/scale = Vector3(0.998653, 1.0027, 0.998653)
-bones/57/rotation = Quaternion(-9.00646e-09, -0.0570787, 1.30809e-08, 0.99837)
-bones/57/scale = Vector3(1.00135, 1, 1.00135)
-bones/58/rotation = Quaternion(-0.041099, 0.0101853, 0.0101059, 0.999052)
-bones/58/scale = Vector3(0.999679, 1.00063, 0.999691)
-bones/59/scale = Vector3(1.00032, 1, 1.00032)
-bones/60/rotation = Quaternion(0.545532, -0.0064716, -0.0249731, 0.837693)
-bones/60/scale = Vector3(0.999991, 0.999472, 0.997204)
-bones/62/rotation = Quaternion(-0.0439526, 0.128267, 0.990679, 0.0130556)
-bones/62/scale = Vector3(0.999806, 1.00039, 0.999806)
-bones/63/rotation = Quaternion(-5.71104e-09, 0.126999, -9.66595e-09, 0.991903)
-bones/63/scale = Vector3(1.00019, 1, 1.00019)
-bones/64/rotation = Quaternion(-0.0480648, -0.0101146, -0.0101767, 0.998741)
-bones/64/scale = Vector3(0.999953, 1.00009, 0.999954)
-bones/65/scale = Vector3(1.00005, 1, 1.00005)
-bones/66/rotation = Quaternion(0.526035, 0.00673517, 0.0228201, 0.85013)
-bones/66/scale = Vector3(0.999998, 0.999895, 0.999626)
+bones/7/rotation = Quaternion(-0.609269, 0.0730102, -0.141376, 0.776836)
+bones/8/rotation = Quaternion(2.95668e-07, -0.0157853, -3.70611e-08, 0.999875)
+bones/32/rotation = Quaternion(-0.607423, -0.0901232, 0.0825475, 0.784921)
+bones/33/rotation = Quaternion(2.90919e-07, -0.00714201, 9.80455e-08, 0.999974)
+bones/56/rotation = Quaternion(0.0114146, 0.0913896, 0.995711, -0.00879053)
+bones/57/rotation = Quaternion(-3.54237e-09, -0.0973394, 1.84724e-08, 0.995251)
+bones/58/rotation = Quaternion(-0.0375083, 0.0102216, 0.0100692, 0.999193)
+bones/60/rotation = Quaternion(0.550481, -0.00638692, -0.0235003, 0.834492)
+bones/62/rotation = Quaternion(-0.0035748, 0.13883, 0.990153, 0.0176087)
+bones/63/rotation = Quaternion(-6.362e-09, 0.0864107, -8.07203e-09, 0.99626)
+bones/66/rotation = Quaternion(0.519093, 0.00687531, 0.0232192, 0.854375)
 
 [node name="Objekte" type="Node3D" parent="."]
 
@@ -534,14 +500,16 @@ transform = Transform3D(0.0835387, 0, -0.996505, 0, 1, 0, 0.996505, 0, 0.0835387
 [node name="Leute" type="Node3D" parent="Objekte"]
 
 [node name="FußgängerGruppe" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67345, 0, -28.0806)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -3.67345, 0, -28.0806)
 moveSpeed = 7
 walkerAmount = 4
+walkerDirection = 0.587
 
 [node name="FußgängerGruppe2" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13649, 0, -44.8789)
 moveSpeed = 7
 walkerAmount = 5
+walkerDirection = 0.213
 
 [node name="FußgängerGruppe3" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
 transform = Transform3D(0.999967, 0.00809824, 0, -0.00809824, 0.999967, 0, 0, 0, 1, 3.556, 0, -78.618)
@@ -560,10 +528,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.746416, 0, -102.471)
 
 [node name="WalkerGroup" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -119)
+walkerDirection = -0.293
 
 [node name="WalkerGroup2" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -153)
 walkerAmount = 5
+walkerDirection = 0.387
 
 [node name="WalkerGroup3" parent="Objekte/Leute" instance=ExtResource("5_tcqy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -178)
@@ -714,5 +684,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -563)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1x7b2")
 
+[node name="WalkerGroup" parent="." instance=ExtResource("5_tcqy0")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 3, 1, -7)
+walkerDirection = 179.6
+
 [editable path="UnstablePlayer"]
 [editable path="UnstablePlayer/animations-treadmill"]
+[editable path="Objekte/Leute/FußgängerGruppe"]

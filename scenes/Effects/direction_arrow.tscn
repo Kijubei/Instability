@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqvu3tyl3qlgm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhdlj"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ysjs2"]
+material = SubResource("StandardMaterial3D_mhdlj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6gqvv"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_r6cuq"]
+material = SubResource("StandardMaterial3D_6gqvv")
+
+[node name="DirectionArrow" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, -6.55671e-08, -0.1, 0, 1.5, -4.37114e-09, 0, 0, 1.5)
+mesh = SubResource("CylinderMesh_ysjs2")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0, 0, 3)
+mesh = SubResource("PrismMesh_r6cuq")

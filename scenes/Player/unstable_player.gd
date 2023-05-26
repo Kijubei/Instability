@@ -103,7 +103,7 @@ func applyState(delta):
 func _on_mood_shift_started():
 	state = PlayerState.floating
 
-func _on_mood_shift_complete(directionMultiplier):
+func _on_mood_shift_complete(_directionMultiplier):
 	if state != PlayerState.fainted and state != PlayerState.bodied:
 		state = PlayerState.jump
 

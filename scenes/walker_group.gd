@@ -9,16 +9,25 @@ extends Node3D
 		walkerAmount = value
 		if Engine.is_editor_hint():
 			updateWalker()
+@export var walkerDirection = 180.0:
+	set(value):
+		walkerDirection = value
+		if Engine.is_editor_hint():
+			updateDirection(value)
 
 @export var walkerWidth = 1.5
 
-signal getBodiedFromGroup(bumpPower, directionNormalized)
-
 var walkerArray = []
 var walkerScene = preload("res://scenes/walker.tscn")
+var directionArrowScene = preload("res://scenes/Effects/direction_arrow.tscn")
+var arrow: Node3D
+#@onready var directionArrow = $DirectionArrow
 
 func _ready():
 	addAllWalker()
+	if Engine.is_editor_hint():
+		arrow = directionArrowScene.instantiate()
+		add_child(arrow)
 
 func updateWalker():
 	removeAllWalker()
@@ -42,3 +51,13 @@ func walkerPosition(forX) -> float:
 	var equalizer = (walkerWidth * walkerAmount) / 2
 	var absolutePosX = forX * walkerWidth
 	return absolutePosX - equalizer
+
+func updateDirection(value):
+	if arrow != null:
+		pass
+		#arrow.rotate(Vector3(0,1,0), value) # super "schnelle" rota
+		#arrow.
+	#var arrow = directionArrowScene.instantiate()
+	#add_child(arrow)
+	#arrow.rotation.y = value
+	
