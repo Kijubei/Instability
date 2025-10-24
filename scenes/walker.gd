@@ -13,8 +13,8 @@ var direction = Vector3(0,0,1)
 func _ready():
 	self.visible = false
 
-func setYRotation(rotation: float):
-	direction = direction.rotated(Vector3(0,1,0), rotation)
+func setYRotation(yRotation: float):
+	direction = direction.rotated(Vector3(0,1,0), yRotation)
 
 func _process(delta):
 	if self.visible:
