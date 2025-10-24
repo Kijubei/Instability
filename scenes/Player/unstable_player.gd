@@ -2,8 +2,6 @@ class_name UnstablePlayer
 
 extends CharacterBody3D
 
-signal mood_shift(directionMultiplier: int)
-
 enum PlayerState {
 	idle,
 	walk,

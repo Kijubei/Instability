@@ -8,7 +8,6 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#self.size.x = max_pills * pillImg.texture.get_width()
 	pillImg.size.x = pills * pillImg.texture.get_width()
 
 func setPills(value):

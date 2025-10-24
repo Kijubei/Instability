@@ -17,8 +17,8 @@ signal complete(directionMultiplier: int)
 @onready var tween: Tween = create_tween()
 
 func _ready():
-	assert(world, "world not initialized for mood_shift")
-	assert(player, "player not initialized for mood_shift")
+	assert(world, "world not initialized for MoodShift")
+	assert(player, "player not initialized for MoodShift")
 	
 	tween.pause()
 
@@ -32,7 +32,7 @@ func shiftWorld(directionMultiplier: int):
 	var angle_deg = 90 * directionMultiplier + variance()
 	var time: float = 10.0 / rotationMultiplier
 	# Ich weiß nicht warum der hier immer wieder erstellt werden muss
-	var tween = create_tween()
+	tween = create_tween()
 
 	# Startzustand speichern
 	var start_basis = world.global_transform.basis
